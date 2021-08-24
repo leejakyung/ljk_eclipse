@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+/* font-family: 'Source Code Pro', monospace; */
+@import
+	url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+/* font-family: 'Playfair Display', serif; */
+body, header, nav, div, footer, h3, p, ul, li {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: lightyellow;
+}
+#wrapper {
+	margin: 0 auto;
+	width: 100%;
+}
+
+#header {
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding: 10px;
+}
+
+#header a {
+	font-family: 'Source Code Pro', monospace;
+	color: navy;
+	text-decoration: none;
+	font-size: 50px;
+}
+
+#gnb {
+	justify-content: center; /* 요소를 가로축 방향으로 가운데 정렬 */
+	display: flex; /* 레이아웃을 구성하거나 요소들의 위치를 변경할 때 사용 */
+	/* 부모와 자식요소 반드시 필요! 부모 요소에 display: flex; 사용 */
+	margin-bottom: 30px;
+}
+
+.menu {
+	list-style: none;
+	display: flex; /* 가로 방향으로 설정 */
+	/* display: inline; */
+}
+#gnb li {
+	margin: 0 20px;
+}
+
+#gnb li a {
+	text-align: center;
+	font-family: 'Playfair Display', serif;
+	text-decoration: none;
+	color: red;
+	font-size: 32px;
+}
+.visual {
+	/* background-color: #EBFBFF; */
+	width: 90%;
+	padding: 0 50px 50px 50px;
+}
+footer {
+	background-color: #EBFBFF;
+}
+footer .head ul {
+	list-style-type: none;
+	display: flex;
+}
+footer .head ul li {
+	display: inline;
+	margin: 0 5px;	
+}
+footer .head li a {
+	text-decoration: none;
+	color: gray;
+}
+
+footer .quickMenu li:before {
+	content: "";
+	display: inline-block;
+	margin: 0 10px 0 0;
+	width: 1px;
+	height: 12px;
+	background-color: gray;
+}
+
+footer .quickMenu li:first-child:before {
+	content: none;
+}
+
+footer .head {
+	position: relative;
+}
+
+}
+footer .head .wrap {
+	max-width: 1120px;
+	margin: 0 auto;
+}

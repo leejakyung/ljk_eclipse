@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바를잡아조-프로그램 소개</title>
+<link rel="icon" href="img/airplane_icon.ico">
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="jquery-3.6.0.min.js"></script>
+<style type="text/css">
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
+* {
+	font-family: 'Gaegu', cursive;
+}
+
+#logo img { /*메인페이지 이동 로고 사이즈*/
+	width: 70px;
+	height: 40px;
+}
+
+#logo { /*메인로고 폰트사이즈*/
+	font-size: 30px;
+	text-decoration: none;
+}
+
+#box1 {
+	border: 3px solid hotpink;
+	width: 500px;
+	height: 150px;
+	margin: 5px;
+}
+#box2 img{
+	border: 3px solid hotpink;
+	width: 700px;
+	height: 400px;
+	overflow: hidden;
+	margin: 1px;
+	padding: 1px;
+	
+}
+.swiper-container {
+  width: 710px;
+  height: 420px;
+  background-color: pink; /*스크롤바 배경색상*/
+}
+
+
+#btn1 {
+	border: 2px solid hotpink;
+	background-color: white;
+	font-weight: 50px;
+	font-size: 22px;
+	text-align: left;
+	margin: 10px;
+}
+
+#btn2 {
+	border: 2px solid hotpink;
+	background-color: white;
+	font-weight: 50px;
+	font-size: 22px;
+	text-align: left;
+	margin: 10px;
+}
+
+li {
+	list-style-type: none;
+}
+
+#container .teamName{
+	position: absolute;
+	top: 0; /*오른쪽 상단배치*/
+	right: 0; /*오른쪽 상단배치*/
+	margin: 0;
+	padding: 50px;
+	font-size: 22px;
+}
+#air{
+	width: 450px;
+	height: 300px;
+}
+
+.tab_menu {
+	position: absolute;
+	display: inline;
+	margin: 10px;
+	padding: 10px;
+}
+
+#air {
+	text-align: center; 
+	margin-top: 20px;
+}
+#air {
+	animation: motion 0.7s linear 0s infinite alternate; 
+	margin-top: 0;
+}
+        
+@keyframes motion {
+	0% {margin-top: 0px;}
+	100% {margin-top: 20px;}
+}
+
+
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn1").click(function() {
+			$("#box1").toggle();
+		});
+		$("#btn2").click(function() {
+			$("#box2").toggle();
+		});
+	
+	});
+	
+	
+</script>
+
+</head>
+<body>
+
+	
+	<a href="main.html" id="logo">HG
+		Airline<img alt="로고" src="img/airplane_icon.ico">
+	</a>
+
+
+	<div id="container">
+		<div class="teamName">
+			<h1 class="typeA">Java를 Job아줘!</h1>
+			<p class="explain">
+				Java도 잡고 Job도 잡고<br> <span>성공적인 과정 완주를 위한 집단지성!</span>
+			<br><img id="air" alt="비행기" src="img/HGAIR.jpg">
+			</p>
+			
+		</div>
+
+
+
+		<div class="tab_menu">
+			<ul class="list">
+				<li class="is_on">
+					<button id="btn1">프로젝트 의의</button>
+				</li>
+				<li id="box1">» 온라인 예약 수요 증가로 인한 항공사들의 온라인 예매 프로그램의 수요로<br>&nbsp;&nbsp;기획되었다.<br>
+					<br> » 현재, 코로나로 인한 저가 항공사들의 폐업 이후 신설 항공사가 등장하게<br>&nbsp;&nbsp;될
+					것으로 예측된다.<br> <br> » 온라인 예매 프로그램의 수요는 더욱 증가될 것으로 예상된다.
+				</li>
+			</ul>
+			<ul>	
+				<li class="is_on">
+					<button id="btn2">프로젝트 소개</button>
+				</li>
+				<li class="swiper-container">
+					<div class="swiper-wrapper" id="box2">
+					<div class="swiper-slide"><img src="img/table.PNG" alt="1"></div>	
+					<div class="swiper-slide"><img src="img/userFlow.PNG" alt="2"></div>	
+					</div>
+					<div class="swiper-scrollbar"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+		<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+		<script type="text/javascript">
+	var swiper = new Swiper('.swiper-container', {
+		scrollbar: {
+		    el: '.swiper-scrollbar',
+		  },
+       
+    });
+	</script> 
+</body>
+</html>

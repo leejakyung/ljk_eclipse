@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko"> <!-- 웹 접근성 지침! -->
+<head>
+<meta charset="UTF-8">
+<title>HG AIR</title>
+<link rel="icon" href="img/airplane_icon.ico">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<style type="text/css">
+	@import url("index.css");
+</style>
+
+</head>
+<body>
+<div id="wrapper">
+
+	<header id="header">
+		<a href="#" target="_blank">HG Airline</a>
+	</header>
+	
+	<nav id="gnb">
+		<ul class="menu">
+			<li>
+				<a href="project.html" target="_blank" class="mytrip">
+					Program <!-- 프로그램 소개 -->
+				</a>
+			</li>
+			<li>
+				<a href="member.html" target="_blank" class="book">
+					Member <!-- 멤버 소개 -->
+				</a>
+			</li>
+			<li>
+				<a href="#" target="_blank" class="book">
+					Book <!-- 항공권 예약 -->
+				</a>
+			</li>
+			<li>
+				<a href="#" target="_blank" class="login">
+					Login <!-- 로그인 -> 회원가입-->
+				</a>
+			</li>
+			<li>
+				<a href="map.html" target="_blank" class="login">
+					Map <!-- 로그인 -> 회원가입-->
+				</a>
+			</li>
+		</ul>
+	</nav>
+	
+	<div class="visual">
+		<div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><a href="#"><img alt="비행기이미지" src="img/jet.jpg" style="width:100%;"></a></div>
+                <div class="swiper-slide"><a href="#"><img alt="운항리스트이미지" src="img/list.jpg" style="width:100%;"></a></div>
+                <div class="swiper-slide"><a href="#"><img alt="공항이미지1" src="img/airport.jpg" style="width:100%;"></a></div>           	
+                <div class="swiper-slide"><a href="#"><img alt="공항이미지2" src="img/travel.jpg" style="width:100%;"></a></div>           	
+            </div>
+            <!-- <div class="swiper-pagination"></div> -->
+        </div>
+	</div>
+	
+	<footer>
+		<div class="head">
+			<div class="wrap">
+				<div class="quickMenu">
+					<h3>약관 및 안내</h3>
+						<ul>
+							<li><a href="#">개인정보처리방침</a></li>
+							<li><a href="#">홈페이지이용약관</a></li>
+							<li><a href="#">여객운송약관</a></li>
+							<li><a href="#">항공교통이용자서비스계획</a></li>
+							<li><a href="#">피해구제계획</a></li>
+							<li><a href="#">e-티켓확인증법적고지문</a></li>
+							<li><a href="#">사이트맵</a></li>
+						</ul>
+				</div>
+				<div class="quickMenu">
+					<h3>고객서비스</h3>
+						<ul>
+							<li><a href="#">자주묻는질문(FAQ)</a></li>
+							<li><a href="#">고객의말씀(QnA)</a></li>
+							<li><a href="#">기내유실물찾기</a></li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<div class="wrap">
+				<div class="customer">
+					<p><strong>고객서비스센터 2222-2222</strong></p>
+					<p>업무시간 오전 8:00 ~ 오후 8:00</p>
+				</div>
+				<div class="info">
+					<p>HG AIR 자바를 잡아조 사업자등록번호 222-22-22222</p>
+				</div>
+				<p class="copy">Copyright © HG AIR. All Rights Reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination'
+            },
+            loop: true, // 무한반복
+            autoplay: { // 자동 슬라이딩
+            	delay: 1000  // 1초 간격
+            },
+            speed: 2000  // 슬라이딩 속도
+        });
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="jquery-3.6.0.min.js"></script>
+<style type="text/css">
+@midia screen and (min-width: 768px ) and (max-width: 1024px ){
+	body {background-color: lightblue;}
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap'); /*한글*/
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap'); /*영어*/
+
+#typeA,#explain,.smallName,#typeB{
+	font-family: 'Hi Melody', cursive;
+}
+#brand{
+	font-family: 'Amatic SC', cursive;
+} 
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	witdh: 100%;
+	height: 120px;
+}
+
+img {
+	margin-top: 50px;
+	margin-left: 10%;
+	width: 300px;
+	height: 250px;
+	float: left;
+}
+#brand{
+	position: absolute;
+	margin-top: 100px;
+	margin-left: 45%;
+	text-align: center;
+	font-size: 100px;
+	color: #2E64FE;
+}
+
+#container {
+	clear: left;
+	margin: 10px;
+	height: 1000px;
+}
+
+#typeA {
+	margin-left: 0;
+	text-align: center;
+	
+}
+
+#explain {
+	text-align: center;
+	margin-top: 50px;
+	margin-left: 40%;
+	width: 400px;
+	font-size: 20px;
+}
+
+.tab_menu {
+	clear: left;
+	border: 3px solid #81BEF7;
+	margin: 30px;
+}
+.smallName{
+	margin-top: 50px;
+	margin-left: 45%;
+	width: 190px;
+	color: #2E64FE;
+	text-align: center;
+}
+.mean {
+	text-align: center;
+	margin-left: 0;
+	padding-top: 30px;
+	width: 100px; /*100px로바꾸기*/
+	height: 100px; 
+	font-size: 20px;
+}
+
+.mean h2 {
+	margine-left: 700px;
+}
+
+.tab_menu p {
+	color: white;
+	margine-left: 600px;
+}
+.swiper-wrapper img{
+	margin-left: 20%;
+	margin-right: 10%;
+	width: 1000px;
+	height: 1000px;
+}
+</style>
+
+</head>
+<body>
+	<div id="header">
+		<a href="#" id="logo"><img alt="HG_AIR_LOGO"
+			src="img/plane.png"></a>
+		<!-- 메인페이지이동 -->
+		<p id="brand">HG_AIR</p>
+	</div>
+	<br>
+	<div id="container">
+		<div class="teamName">
+			<h1 id="typeA" onmouseout="onOut(this.id);">Java를 Job아줘!!<br>(↑마우스야 지나가줘↓)</h1> <!-- 마우스아웃색상변경 -->
+				
+			<p id="explain" onmouseout="onOut(this.id);"> <!-- 마우스아웃색상변경 -->
+				Java도 잡고 Job도 잡고<br>성공적인 과정 완주를 위한 집단지성!
+			</p>
+		</div>
+		<div class="tab_menu">
+			<h2 class="smallName">프로젝트 의의<br>(기다림의 미학)</h2>
+			<div class="mean">
+				<p id="typeB"><!-- 기다리면 글자 표시 -->
+					온라인 예약 수요 증가로 인한 항공사들의 온라인 예매 프로그램의 수요로 기획되었다.<br> 현재, 코로나로 인한
+					저가 항공사들의 폐업 이후 신설 항공사가 등장하게 될 것으로 예측된다.<br> 온라인 예매 프로그램의 수요는
+					더욱 증가될것으로 예상된다.<br>
+			</div>
+			<h2 class="smallName">지난 프로젝트</h2>
+			<br>
+			<div class="swiper-container">
+				<div class="swiper-wrapper"><!-- 이미지 스왑 -->
+					<div class="swiper-slide">
+						<img src="img/userFlow.PNG" alt="유저플로우">
+					</div>
+					<div class="swiper-slide">
+						<img src="img/table.PNG" alt="테이블">
+					</div>
+					
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			$(".mean").animate({
+				width : 1800
+			}, 4000, function cssChange() {
+				var change = document.getElementById("typeB");
+				change.style.color = "#084B8A";
+			})
+		})
+
+		 var swiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination'
+            },
+            loop: true, 
+            autoplay: { 
+            	delay: 1000  
+            },
+            speed: 2000 
+        });
+		
+		var timer;
+		var my_id;
+		
+		function onOut(this_id) {
+			my_id=this_id
+			timer =setInterval(changeRGB, 1750);
+		}
+		function changeRGB(){
+			var text = document.getElementById(my_id); 
+			var r = Math.round(Math.random() * 255);
+			var g = Math.round(Math.random() * 255);
+			var b = Math.round(Math.random() * 255);
+			
+			var random_color = "rgb("+r+","+g+","+b+")";
+			
+			text.style.color=random_color;
+		} // 마우스올리면 요란하다
+		
+	</script>
+</body>
+</html>
