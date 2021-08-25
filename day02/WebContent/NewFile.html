@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--  html -> servlet -> class 순으로 작성 -->
+	<!--  action으로 servlet으로 연결  (프로젝트==패키지명)  -->
+	<form method="post" name="form1" action="/day02/CalcServlet">
+		<input type="text" id="num1" name="num1"> 
+		<select name="op">
+			<option selected value="+">더하기</option> <!-- 태그 바디 -->
+			<!-- 실제 출력을 다른 언어? 로 넣을때 이렇게 value를 넣어서 써줌 -->
+			<option>-</option>
+		</select> 
+	<input type="text" id="num2" name="num2">
+    <input type="submit" value="계산하기" name="btn1">
+    </form>
+
+</body>
+</html>

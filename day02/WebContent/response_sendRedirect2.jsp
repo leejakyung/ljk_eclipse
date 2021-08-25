@@ -1,0 +1,1 @@
+<% response.sendRedirect("result2.jsp"); %>
