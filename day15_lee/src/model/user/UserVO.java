@@ -3,15 +3,15 @@ package model.user;
 import java.util.Date;
 
 public class UserVO {
-	private String uid;
+	private String userID;
 	private String name;
 	private String upw;
 	private Date udate;
-	public String getUid() {
-		return uid;
+	public String getUserID() {
+		return userID;
 	}
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 	public String getName() {
 		return name;
@@ -33,7 +33,7 @@ public class UserVO {
 	}
 	@Override
 	public String toString() {
-		return "UserVO [uid=" + uid + ", name=" + name + ", upw=" + upw + ", udate=" + udate + "]";
+		return "UserVO [userID=" + userID + ", name=" + name + ", upw=" + upw + ", udate=" + udate + "]";
 	}
 	
 	

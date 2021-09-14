@@ -15,10 +15,10 @@ public class UserDAO {
 	
 	public boolean insert(UserVO vo) {
 		conn = JNDI.connect();
-		String sql = "insert into user(uid,name,upw,udate) values(?,?,?,sysdate)";
+		String sql = "insert into cilents(userID,name,upw,udate) values(?,?,?,sysdate)";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getUid());
+			pstmt.setString(1, vo.getUserID());
 			pstmt.setString(2, vo.getName());
 			pstmt.setString(3, vo.getUpw());
 			pstmt.executeQuery();
@@ -38,11 +38,11 @@ public class UserDAO {
 	
 	public boolean login(UserVO vo) {
 		conn=JNDI.connect();
-		String sql="select uid,upw from user where uid =?";
+		String sql="select userID,upw from clients where userID =?";
 		boolean result = false;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getUid());
+			pstmt.setString(1, vo.getUserID());
 			rs = pstmt.executeQuery();
 			rs.next();
 			if(rs.getString("upw").equals(vo.getUpw())) {
@@ -66,7 +66,8 @@ public class UserDAO {
 	public ArrayList<UserVO> selectAll() {
 		ArrayList<UserVO> datas = new ArrayList<UserVO>();
 		conn = JNDI.connect();
-		String sql = "select * from user order by udate desc limit 0,3";
+		//String sql = "select * from clients order by udate desc limit 0,3";
+		String sql="select * from clients where rownum <=1 order by udate desc";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -75,7 +76,7 @@ public class UserDAO {
 				data.setUdate(rs.getDate("udate"));
 				data.setName(rs.getString("name"));
 				data.setUpw(rs.getString("upw"));
-				data.setUid(rs.getString("uid"));
+				data.setUserID(rs.getString("userID"));
 				datas.add(data);
 			}
 		} catch (SQLException e) {
@@ -91,6 +92,26 @@ public class UserDAO {
 			}
 		}
 		return datas;
+	}
+	
+	public boolean signup(UserVO vo) {
+		conn=JNDI.connect();
+		
+		String sql = "insert into clients values (?,?,?,sysdate)"; // 회원가입
+		boolean result=false;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getUserID());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(2, vo.getUpw());
+			pstmt.executeUpdate();
+			result = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JNDI.disconnect(pstmt, conn);
+		}
+		return result;
 	}
 }
 	
