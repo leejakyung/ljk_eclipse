@@ -11,7 +11,7 @@
 <jsp:setProperty property="*" name="uVO" />
 <%
 	String action=request.getParameter("action");
- System.out.println(action);
+ 	System.out.println(action);
 	String url="control.jsp?action=main";	
 	String mcntt=request.getParameter("mcnt");
 	System.out.println(mcntt);
@@ -24,17 +24,16 @@
 	if(selUser!=null){
 		url= url+ "&selUser="+selUser;
 	}
-	System.out.println(url);
-	System.out.println("1");	
+	System.out.println(url);	
 	if(action.equals("main")){
 		
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
 		ArrayList<UserVO> newUsers=uDAO.selectAll();
-		System.out.println("2");
 		request.setAttribute("datas", datas);
 		request.setAttribute("newUsers", newUsers);
 		request.setAttribute("selUser", selUser);
 		request.setAttribute("mcnt", mcnt);
+		System.out.println(mcnt);
 		
 		pageContext.forward("main.jsp");
 	} else if(action.equals("mainAll")){
@@ -73,10 +72,36 @@
 		}
 	}
 	else if(action.equals("newmsg")){
-		System.out.println("확인1");
 		if(mDAO.insert(mVO)){
-		System.out.println("확인2");
 		pageContext.forward("control.jsp?action=main");
+		}
+	}
+	else if(action.equals("newrmsg")){
+
+		if(rDAO.insert(rVO)){
+		pageContext.forward("control.jsp?action=main");
+		}
+	}
+	// 페이징 처리 -> 아래 delete 두가지 방법 둘다 사용 가능  
+	else if(action.equals("delete")){ // 댓글 삭제
+		System.out.println("삭제 확인");
+		/* System.out.println(request.getParameter("mcnt")); */
+		/* request.setAttribute("mcnt",request.getParameter("mcnt")); */
+		
+		
+		if(mDAO.delete(mVO)){
+			response.sendRedirect(url);
+		} else{
+			throw new Exception("DB delete 오류 발생!");
+		}
+	}
+	else if(action.equals("Rdelete")){ // 댓글 삭제
+		System.out.println("삭제 확인");
+		request.setAttribute("mcnt",request.getParameter("mcnt"));
+		if(rDAO.delete(rVO)){
+			pageContext.forward("control.jsp?action=main");
+		} else{
+			throw new Exception("DB delete 오류 발생!");
 		}
 	}
 	

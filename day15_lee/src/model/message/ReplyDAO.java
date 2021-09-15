@@ -11,7 +11,8 @@ public class ReplyDAO {
 	PreparedStatement pstmt;
 	public boolean insert(ReplyVO vo) {
 		conn = JNDI.connect();
-		String sql = "insert into reply(mid,userID,rmsg,rdate) values(?,?,?,sysdate)";
+		String sql = "insert into reply(rid,mid,userID,rmsg,rdate) values(nvl((select max(rid) from reply),0)+1, ?, ?, ?, sysdate)";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getMid());

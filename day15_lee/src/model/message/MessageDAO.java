@@ -24,7 +24,8 @@ public class MessageDAO {
 			if((userID==null) || (userID.equals(""))){
 				System.out.println("6");
 				// sql = "select * from message order by date desc limit 0,?";
-				sql="select * from message where rownum <=? order by mdate desc"; // 댓글을 2개만 보여주겠다. asc 오름차순
+				// sql="select * from message where rownum <=? order by mdate desc"; // 댓글을 2개만 보여주겠다. asc 오름차순
+				sql = "select * from (select * from message order by mdate desc) where rownum<=?";
 				// sql="select * from message order by date desc";
 				pstmt =conn.prepareStatement(sql);
 				pstmt.setInt(1, cnt);
@@ -32,7 +33,7 @@ public class MessageDAO {
 			} 
 			else {
 				System.out.println("7");
-				sql= "select * from message where userID=? and rownum<=? order by mdate desc";
+				sql = "select * from (select * from message order by mdate desc) where userID = ? and rownum<=?";
 				// sql= "select *from message where uid=? order by date desc limit 0,?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, userID);
@@ -52,7 +53,7 @@ public class MessageDAO {
 				m.setUserID(rs.getString("userID"));
 				m.setMdate(rs.getDate("mdate"));
 
-				String rsql = "select * from reply where mid=? order by rdate desc";
+				String rsql = "select * from reply where mid=? order by rid desc";
 				pstmt = conn.prepareStatement(rsql);
 				pstmt.setInt(1, rs.getInt("mid"));
 				ResultSet rrs = pstmt.executeQuery();
