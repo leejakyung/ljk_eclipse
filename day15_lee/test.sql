@@ -10,12 +10,13 @@ create table message(
 	mid int primary key,
 	userID varchar(20),
 	msg varchar(100),
-	favcount int,
-	replycount int,
+	favcount int default 0, 
+	replycount int default 0,
     mdate date
 );
 drop table message;
 drop table clients;
+drop table reply;
 
 create table reply(
    rid int primary key,

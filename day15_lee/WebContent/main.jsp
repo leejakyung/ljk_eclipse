@@ -1,20 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>
 <jsp:useBean id="uVO" class="model.user.UserVO" />
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/style.css">
 <script type="text/javascript">
+	function newUser(){
+		window.open("insertUser.jsp","회원가입","width=500,height=200");
+	}
 	
 	function del(mid, mcnt) { 
 		result = confirm("정말로 삭제하시겠습니까?");
 		if (result == true) {
 			document.location.href = "control.jsp?action=delete&mid=" + mid+"&mcnt=" +mcnt;
 		} else {
-			alert("접근 권한이 없습니다!");
+			return;
 		}
 	}
 	
@@ -23,7 +28,7 @@
 		if (result == true) {
 			document.location.href = "control.jsp?action=Rdelete&rid=" + rid+"&mcnt=" +mcnt;
 		} else {
-			alert("접근 권한이 없습니다!");
+			return;
 		}
 	}
 
@@ -31,8 +36,10 @@
 </head>
 <body>
 
+<div class="content">
 <ol>
-	<li><a href="control.jsp?action=mainAll">전체목록보기</a></li>
+	<li><a href="control.jsp?action=mainAll"><img alt="로고" src="image/pig.png" style="width:100px;height:100px;"></a></li>
+	<li><a href="javascript:newUser()">회원가입</a></li>
 </ol>
 <hr>
 <a href="control.jsp?action=main&mcnt=${mcnt+1}&selUser=${selUser}">더보기&gt;&gt;</a>
@@ -44,6 +51,7 @@
 	<c:set var="m" value="${v.m}"/>
 	<h3>[${m.userID}] ${m.msg} &gt;&gt; [좋아요 ${m.favcount} | 댓글 ${m.replycount} | ${m.mdate}]
 	
+	<a href="control.jsp?action=updatemsg&mid=${m.mid}&mcnt=${mcnt}">♥</a>
 	
 	<c:if test="${seUser == m.userID}">
 	<input type="button" value="삭제" onclick="del(${m.mid},${mcnt})"> <!-- 스크립트에 받아온 인자를 넣어줌  -->
@@ -75,8 +83,6 @@
 </c:forEach>
 
 
-
-
 <hr>
 
 <c:if test="${seUser != null}">
@@ -96,24 +102,28 @@
 
 <hr>
 
-<a href="insertUser.jsp">회원가입</a> <br>
-<form action="control.jsp" method="post">
-<input type="hidden" name="mcnt" value="${mcnt}">
-<c:choose>
-	<c:when test="${empty seUser}">
-		<input type="hidden" name="action" value="login">
-		<input type="text" name="userID">
-		<input type="password" name="upw">
-		<input type="submit" value="로그인">  
-	</c:when>
-	<c:otherwise>
-		${seUser}님, 환영합니다!
-		<input type="hidden" name="action" value="logout">
-		<input type="submit" value="로그아웃">
-		<a href="control.jsp?action=main&selUser=${seUser}">내글보기</a>
-	</c:otherwise>
-</c:choose>
-</form>
+<!-- <a href="insertUser.jsp">회원가입</a> <br> -->
+
+<mytag:login />
+
+<hr>
+
+<h4>신규 회원 목록</h4>
+<ol>
+	<c:forEach var="u" items="${newUsers}">
+		<li><a href="control.jsp?action=main&mcnt=${mcnt}&selUser=${u.userID}">${u.name}</a>님, 가입</li>
+	</c:forEach>
+</ol>
+</div>
+
+<div class="img">
+<ul>
+	<li><a href="https://www.youtube.com/watch?v=xlmPbjAcRXQ"><img alt="뽀로로이미지" src="image/pororo.png"></a></li>
+	<li><a href="https://www.youtube.com/watch?v=pAkE0mK1_ds&list=PLXO7jFcjiAWC6p2c6pd6L98eBqMKJS4zV"><img alt="디즈니이미지" src="image/dog.jpg"></a></li>
+	<li><a href="https://www.youtube.com/watch?v=BmDT1eq23l4"><img alt="버섯이미지" src="image/mushroom.ico"></a></li>
+</ul>
+</div>
+
 
 </body>
 </html>

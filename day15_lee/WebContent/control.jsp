@@ -61,7 +61,7 @@
 		///session.removeAttribute("selUser");
 		response.sendRedirect("control.jsp?action=main");
 	} 
-	else if (action.equals("signup")) {
+/* 	else if (action.equals("signup")) {
 		System.out.println(uVO);
 
 		if (uDAO.signup(uVO)) {
@@ -70,7 +70,7 @@
 		} else {
 			out.println("<script>alert('회원가입에 실패하셨습니다. 정보를 다시 확인해주세요.');history.go(-1);</script>");
 		}
-	}
+	} */
 	else if(action.equals("newmsg")){
 		if(mDAO.insert(mVO)){
 		pageContext.forward("control.jsp?action=main");
@@ -104,5 +104,20 @@
 			throw new Exception("DB delete 오류 발생!");
 		}
 	}
-	
+	else if(action.equals("newUser")){
+		if(uDAO.insert(uVO)){
+			out.println("<script>alert('회원가입완료! 로그인 후 이용하세요.');window.close();</script>");
+		}
+		else{
+			out.println("<script>alert('회원가입에 실패하셨습니다. 정보를 다시 확인해주세요.');history.go(-1);</script>");
+		}
+	}
+	else if(action.equals("updatemsg")){
+		System.out.println(mVO);
+		/* String mid = request.getParameter("mid");
+		int mmid=Integer.parseInt(mid);
+		mVO.setMid(mmid); */
+		mDAO.update(mVO); 
+		response.sendRedirect(url);	
+	}
 %>

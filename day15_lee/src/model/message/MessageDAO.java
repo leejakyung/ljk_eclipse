@@ -19,10 +19,10 @@ public class MessageDAO {
 		ArrayList<MsgSet> datas = new ArrayList<MsgSet>();
 		conn = JNDI.connect();
 		String sql;
-		System.out.println("3");
+		//System.out.println("3");
 		try {
 			if((userID==null) || (userID.equals(""))){
-				System.out.println("6");
+				//System.out.println("6");
 				// sql = "select * from message order by date desc limit 0,?";
 				// sql="select * from message where rownum <=? order by mdate desc"; // 댓글을 2개만 보여주겠다. asc 오름차순
 				sql = "select * from (select * from message order by mdate desc) where rownum<=?";
@@ -32,7 +32,7 @@ public class MessageDAO {
 				
 			} 
 			else {
-				System.out.println("7");
+				//System.out.println("7");
 				sql = "select * from (select * from message order by mdate desc) where userID = ? and rownum<=?";
 				// sql= "select *from message where uid=? order by date desc limit 0,?";
 				pstmt = conn.prepareStatement(sql);
@@ -40,9 +40,9 @@ public class MessageDAO {
 				pstmt.setInt(2, cnt);
 			}
 			rs = pstmt.executeQuery();
-			System.out.println("5");
+			//System.out.println("5");
 			while(rs.next()) {
-				System.out.println("4");
+				//System.out.println("4");
 				MsgSet ms = new MsgSet();
 				MessageVO m = new MessageVO();
 				ArrayList<ReplyVO> rlist = new ArrayList<ReplyVO>();
@@ -50,6 +50,7 @@ public class MessageDAO {
 				m.setMid(rs.getInt("mid"));
 				m.setMsg(rs.getString("msg"));
 				m.setFavcount(rs.getInt("favcount"));
+				m.setReplycount(rs.getInt("replycount"));
 				m.setUserID(rs.getString("userID"));
 				m.setMdate(rs.getDate("mdate"));
 
@@ -67,9 +68,9 @@ public class MessageDAO {
 					r.setRmsg(rrs.getString("rmsg"));
 					r.setUserID(rrs.getString("userID"));
 					rlist.add(r);
-					rcnt++;
+					// rcnt++;
 				}
-				m.setReplycount(rcnt);
+				// m.setReplycount(rs.getInt("replycount"));
 
 				ms.setM(m);
 				ms.setRlist(rlist);
@@ -142,6 +143,7 @@ public class MessageDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getMid());
 			pstmt.executeUpdate();
+			System.out.println("확인");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
