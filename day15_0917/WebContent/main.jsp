@@ -14,23 +14,23 @@
 		window.open("insertUser.jsp","회원가입","width=500,height=200");
 	}
 	
-	function del(mid, mcnt, selUser) { 
+	/* function del(mid, mcnt, selUser) { 
 		result = confirm("정말로 삭제하시겠습니까?");
 		if (result == true) {
-			document.location.href = "deletemsg.do?mid=" + mid+"&mcnt=" +mcnt;
+			document.location.href = "deletemsg.do?mid=" + mid+"&mcnt=" +mcnt+"&selUser="+selUser;
 		} else {
 			return;
 		}
 	}
-	
-	function rdel(rid, mcnt, mid) { 
+	function rdel(rid, mcnt, mid, selUser) { 
+
 		result = confirm("정말로 삭제하시겠습니까?");
 		if (result == true) {
-			document.location.href = "deleterp.do?rid=" + rid+"&mcnt=" +mcnt+"&mid="+mid;
+			document.location.href = "deleterp.do?rid=" + rid+"&mcnt=" +mcnt+"&mid="+mid+"&selUser="+selUser;
 		} else {
 			return;
 		}
-	}
+	} */
 
 </script>
 </head>
@@ -54,7 +54,8 @@
 	<a href="fvmsg.do?mid=${m.mid}&mcnt=${mcnt}&selUser=${selUser}">♥</a>
 	
 	<c:if test="${seUser == m.userID}">
-	<input type="button" value="삭제" onclick="del(${m.mid},${mcnt})"> <!-- 스크립트에 받아온 인자를 넣어줌  -->
+	<%-- <input type="button" value="삭제" onclick="del(${m.mid},${mcnt},${selUser})"> --%> <!-- 스크립트에 받아온 인자를 넣어줌  -->
+	<a href="deletemsg.do?mid=${m.mid}&mcnt=${mcnt}&selUser=${selUser}">삭제</a>
 	</c:if>
 	</h3>
 	
@@ -77,7 +78,8 @@
 	<ol><c:forEach  var="r" items="${v.rlist}">
 		<li>${r.userID} >> ${r.rmsg} [${r.rdate}]
 		<c:if test="${seUser == r.userID}">
-		<input type="button" value="-" onclick="rdel(${r.rid},${mcnt}.${r.mid})">
+		<%-- <input type="button" value="-" onclick="rdel(${r.rid},${mcnt},${r.mid},${selUser})"> --%>
+		<a href="deleterp.do?rid=${r.rid}&mid=${r.mid}&mcnt=${mcnt}&selUser=${selUser}">삭제</a>
 		</c:if>
 		</li>
 	</c:forEach></ol>

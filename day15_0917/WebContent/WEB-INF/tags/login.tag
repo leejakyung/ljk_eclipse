@@ -7,6 +7,7 @@
 			<input type="hidden" name="mcnt" value="${mcnt}"> <input
 				type="hidden" name="action" value="login"> <input
 				type="text" name="userID"> <input type="password" name="upw">
+			<input type="hidden" name="selUser" value="${selUser}">	
 			<input type="submit" value="로그인">
 		</form>
 	</c:when>

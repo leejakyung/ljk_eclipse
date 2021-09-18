@@ -67,7 +67,9 @@ public class UserDAO {
 		ArrayList<UserVO> datas = new ArrayList<UserVO>();
 		conn = JNDI.connect();
 		//String sql = "select * from clients order by udate desc limit 0,3";
-		String sql="select * from clients where rownum <=3 order by udate desc";
+		// String sql="select * from clients where rownum <=3 order by udate desc"; -> 잘못된 방식
+		String sql="select * from (select * from clients order by udate desc) where rownum<=3";
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

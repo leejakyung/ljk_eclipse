@@ -42,13 +42,13 @@ public class FvMsgAction implements Action{
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
 		ArrayList<UserVO> newUsers=uDAO.selectAll();
 
-		request.setAttribute("datas", datas);
+		/*request.setAttribute("datas", datas);
 		request.setAttribute("newUsers", newUsers);
 		request.setAttribute("selUser", selUser);
 		request.setAttribute("mcnt", mcnt);
-
+*/
 		forward.setRedirect(false);
-		forward.setPath("main.jsp");
+		forward.setPath("main.do");
 		return forward;
 	}
 

@@ -30,7 +30,8 @@ public class MainAction implements Action {
 		}
 
 		String selUser=request.getParameter("selUser");
-
+		System.out.println("여기에 샐유저"+selUser);
+		
 		MessageDAO mDAO=new MessageDAO();
 		UserDAO uDAO=new UserDAO();
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
