@@ -61,7 +61,7 @@ public class FrontController extends HttpServlet {
 		// 2) 컨트롤러랑 매핑
 		if(action.equals("/main.do")) { // 메인
 			forward=new MainAction().execute(request, response);
-		}
+		} 
 		else if(action.equals("/login.do")) { // 로그인
 			forward=new LoginAction().execute(request, response);
 		}
@@ -94,14 +94,15 @@ public class FrontController extends HttpServlet {
 			// 대부분 false 를 씀 . 앞으로 어떤 에러가 들어올지 분석할 것이기 때문에?
 			forward.setPath("/error/error404.jsp");
 		}
-		
-		// 3) 사용자에게 결과 화면 출력
-		if(forward.isRedirect()) {
-			response.sendRedirect(forward.getPath());
-		}
-		else {
-			RequestDispatcher dispatcher=request.getRequestDispatcher(forward.getPath());
-			dispatcher.forward(request, response);
+		if(forward!=null) { // ★
+			// 3) 사용자에게 결과 화면 출력
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			}
+			else {
+				RequestDispatcher dispatcher=request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
 		}
 	}
 }

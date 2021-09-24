@@ -6,10 +6,15 @@
 }
 .img{
 	float: right;
+	border: 1px;
+	border-color:black; 
 }
 
 .img ul{
 	list-style: none;
+}
+hr{
+	color: gray;
 }
 
 /* h3 a{

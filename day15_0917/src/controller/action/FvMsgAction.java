@@ -22,11 +22,11 @@ public class FvMsgAction implements Action{
 		ActionForward forward = new ActionForward();
 		
 		
-		MessageDAO mDAO=new MessageDAO();
-		MessageVO mVO=new MessageVO();
-		mVO.setMid(Integer.parseInt(request.getParameter("mid")));
+		MessageDAO mDAO=new MessageDAO(); // ==useBean
+		MessageVO mVO=new MessageVO(); // ==useBean
+		mVO.setMid(Integer.parseInt(request.getParameter("mid"))); // setProperty
 		
-		mDAO.update(mVO);
+		mDAO.update(mVO); // void 이기 때문에 
 		
 		
 		
