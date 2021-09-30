@@ -1,10 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean class="test.Test" id="test" />
+	<!-- <bean class="test.CBean" id="cb">
+		<property name="list">
+			<list>
+				<value>apple</value>
+				<value>바나나</value>
+				<value>kiwi는 맛있다!</value>
+			</list>
+		</property>
+	</bean> -->
+	
+	<bean class="test.CBean" id="cb">
+		<property name="map">
+			<map>
+				<entry>
+					<key><value>apple</value></key>
+					<value>사과</value>
+				</entry>
+				<entry>
+					<key><value>123</value></key>
+					<value>일이삼</value>
+				</entry>
+				<entry>
+					<key><value>kiwi</value></key>
+					<value>키위</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+<!-- 	<bean class="test.Test" id="test" init-method="initFunc" destroy-method="" />  class는 필수 id는 선택이지만 우리는 id도 꼭 작성하자!
 	<bean class="test.IPhone" id="phone" />
 
+	<bean class="test.Test" lazy-init="true" /> 보다 효율적인 메모리 사용이 가능하지만 많이 사용하지는 않는다
+	<bean class="test.Test" scope="singleton" /> 이 객체는 한번 만들어져서 계속 재사용됨 singleton 디폴트값이라 안써도됨
+	 두개 세개 만든다면 ... p 어쩌구~  -->
+
+	<!-- <bean class="test.GaPhone" id="phone">
+		<constructor-arg ref="aw"></constructor-arg> 생성자 주입
+		<constructor-arg value="사용자이름"></constructor-arg>
+	</bean>  -->
+	
+	
+	<bean class="test.IPhone" id="phone">
+		<property name="watch" ref="aw"></property>  <!-- 세터주입 : 빈객체가 수행이 완료된 후에 세터가 수행됨  -->
+		<property name="num" value="1234"></property>
+	</bean>
+	<!-- 위 아래가 같은 뜻 == 다른 방식 -->
+	<!-- <bean class="test.IPhone" id="phone" p:watch-ref="aw" p:num="1234"/> --> <!-- 이와 같이 쓰려면 p속성 필요! -->
+	
+	<bean class="test.SmartWatch" id="sw" />
+	<bean class="test.AppleWatch" id="aw" />
 
 </beans>

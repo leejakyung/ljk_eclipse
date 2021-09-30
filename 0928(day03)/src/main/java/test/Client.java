@@ -1,5 +1,8 @@
 package test;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -13,10 +16,19 @@ public class Client {
       //  == Look up
       /*Test t=(Test)factory.getBean("test");
       t.print();*/
-      Phone phone=(Phone)factory.getBean("phone");  
+     /* Phone phone=(Phone)factory.getBean("phone");  
       phone.powerOn();
+      phone.volumeUp();*/
+      
+      CBean cb=(CBean)factory.getBean("cb"); 
+      Map<String,String> map=cb.getMap();
+      System.out.println(map);
+     /* List<String> list=cb.getList();
+      for(String v:list) {
+    	  System.out.println(v);
+      }*/
             
-      // 3. 스프링 컨테이너 종료
+      // 3.스프링 컨테이너 종료
       factory.close();
       
       // => Console
