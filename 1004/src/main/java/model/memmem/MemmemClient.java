@@ -13,15 +13,19 @@ public class MemmemClient {
 
 		MemmemVO vo=new MemmemVO();
 		vo.setId("hong");
-		vo.setPassword("1234");
-		vo.setName("홍길동");
-		vo.setRole("USER");
-		ms.insertMemmem(vo);
+		vo.setPassword("12345");
+		
+		MemmemVO data = ms.getBoard(vo);
 		
 		
-		List<MemmemVO> datas=ms.getMemList(vo);
-		for(MemmemVO data:datas) {
-			System.out.println(data);
+
+		if(data!=null) {
+			// 로그인 성공
+			System.out.println("로그인 성공!");
+		}
+		else {
+			// 로그인 실패
+			System.out.println("로그인 실패!");
 		}
 		
 		factory.close();

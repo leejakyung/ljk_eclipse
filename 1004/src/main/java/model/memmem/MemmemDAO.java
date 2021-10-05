@@ -17,13 +17,43 @@ public class MemmemDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private final String insertSQL="insert into memmem values (?,?,?,?)";
+	/*private final String insertSQL="insert into memmem values (?,?,?,?)";
 	private final String updateSQL="update memmem set id=?, password=?, name=?, role=? where id=?";
 	private final String deleteSQL="delete from memmem where id=?";
-	private final String getMemSQL="select * from memmem where id =?";
-	private final String getMemListSQL="select * from memmem order by id desc";
-
-
+	private final String getMemListSQL="select * from memmem order by id desc";*/
+	private final String getMemSQL="select * from memmem where id =? and password=?";
+	
+	public MemmemVO getBoard(MemmemVO vo) {
+		// 로그인에 성공한다면, MemmemVO 객체가 리턴(반환)
+		// 실패한다면, 리턴이 null
+		MemmemVO data=null;
+		
+		System.out.println("MemmemDAO로 get");
+		
+		try {
+			conn=JDBC.getConnection();
+			pstmt=conn.prepareStatement(getMemSQL);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPassword());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				data=new MemmemVO();
+				data.setId(rs.getString("id"));
+				data.setPassword(rs.getString("password"));
+				data.setName(rs.getString("name"));
+				data.setRole(rs.getString("role"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBC.close(conn, pstmt, rs);
+		}
+		
+		return data;
+	}
+	
+	
+/*
 	public void insertMemmem(MemmemVO vo) {
 		System.out.println("mem dao로 insert");
 		try {
@@ -124,5 +154,5 @@ public class MemmemDAO {
 			JDBC.close(conn, pstmt, rs);
 		}
 		return datas;
-	}
+	}*/
 }
