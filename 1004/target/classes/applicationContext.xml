@@ -2,8 +2,43 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 	<context:component-scan base-package="model"></context:component-scan>
+
+	<bean class="com.lee.app.common.LogAdvice" id="Log" />
+	<bean class="com.lee.app.common.AfterAdvice" id="aAdvice" />
+	<bean class="com.lee.app.common.AfterReturningAdvice" id="arAdvice" />
+	<bean class="com.lee.app.common.AfterThrowingAdvice" id="atAdvice" />
+	<bean class="com.lee.app.common.AroundAdvice" id="aroundAdvice" />
+	
+	<aop:config>
+      	<aop:pointcut expression="execution(* model.board.*Impl.get*(..))" id="aPointcut"/> <!--  .을 두번 찍은건 인자의 개수를 모르기 때문에 / get에 대한 것만 받아오겠다. -->
+		<aop:pointcut expression="execution(* model.board.*Impl.*(..))" id="bPointcut"/> <!--  .을 두번 찍은건 인자의 개수를 모르기 때문에 / 전체를 받아옴 -->
+		<aop:pointcut expression="execution(* model.memmem.*Impl.get*(..))" id="cPointcut"/> <!--  .을 두번 찍은건 인자의 개수를 모르기 때문에 / 전체를 받아옴 -->
+	
+	
+		<aop:aspect ref="aroundAdvice">
+			<aop:around method="printLog" pointcut-ref="bPointcut" />
+		</aop:aspect>
+		<!-- <aop:aspect ref="atAdvice">
+			<aop:after-throwing method="printLog" pointcut-ref="bPointcut" throwing="excep"/>
+		</aop:aspect> -->
+		<!-- <aop:aspect ref="arAdvice">
+			<aop:after-returning method="printLog" pointcut-ref="cPointcut" returning="obj"/>
+		</aop:aspect> -->
+	<!-- 	<aop:aspect ref="arAdvice">
+			<aop:after-returning method="printLog" pointcut-ref="aPointcut"/> 
+		</aop:aspect>
+		<aop:aspect ref="atAdvice">
+			<aop:after-throwing method="printLog" pointcut-ref="bPointcut"/>
+		</aop:aspect>
+		<aop:aspect ref="aroundAdvice">
+			<aop:around method="printLog" pointcut-ref="bPointcut"/>
+		</aop:aspect> -->
+	</aop:config>
+
 </beans>

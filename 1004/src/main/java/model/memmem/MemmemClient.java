@@ -12,13 +12,11 @@ public class MemmemClient {
 		MemmemService ms=(MemmemService)factory.getBean("memmemService");
 
 		MemmemVO vo=new MemmemVO();
-		vo.setId("hong");
-		vo.setPassword("12345");
+		vo.setId("admin");
+		vo.setPassword("1234");
 		
 		MemmemVO data = ms.getBoard(vo);
 		
-		
-
 		if(data!=null) {
 			// 로그인 성공
 			System.out.println("로그인 성공!");

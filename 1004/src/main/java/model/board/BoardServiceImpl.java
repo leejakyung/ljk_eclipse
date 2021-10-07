@@ -12,39 +12,44 @@ public class BoardServiceImpl implements BoardService{
 
 	@Autowired
 	private BoardDAO boardDAO;
-	private LogPlusAdvice logPlusAdvice;
+	/*private LogPlusAdvice logPlusAdvice;*/
 	
-	public BoardServiceImpl() {
+	/*public BoardServiceImpl() {
 		this.logPlusAdvice=new LogPlusAdvice();
-	}
+	}*/
 	
 	@Override
 	public void insertBoard(BoardVO vo) {
-		logPlusAdvice.printPlusLog();
+		/*if(vo.getId()==0) {
+			throw new IllegalArgumentException("id PK : 0 불가능!");
+			// 런타임 예외(실행시에 발생,체크되는 예외)
+		}*/
+
+		//logPlusAdvice.printPlusLog();
 		boardDAO.insertBoard(vo);
 	}
 
 	@Override
 	public void updateBoard(BoardVO vo) {
-		logPlusAdvice.printPlusLog();
+		//logPlusAdvice.printPlusLog();
 		boardDAO.updateBoard(vo);
 	}
 
 	@Override
 	public void deleteBoard(BoardVO vo) {
-		logPlusAdvice.printPlusLog();
+		//logPlusAdvice.printPlusLog();
 		boardDAO.deleteBoard(vo);
 	}
 
 	@Override
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		logPlusAdvice.printPlusLog();
+		//logPlusAdvice.printPlusLog();
 		return boardDAO.getBoardList(vo);
 	}
 
 	@Override
 	public BoardVO getBoard(BoardVO vo) {
-		logPlusAdvice.printPlusLog();
+		//logPlusAdvice.printPlusLog();
 		return boardDAO.getBoard(vo);
 	}
 
