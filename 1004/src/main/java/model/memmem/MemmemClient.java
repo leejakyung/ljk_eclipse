@@ -12,7 +12,7 @@ public class MemmemClient {
 		MemmemService ms=(MemmemService)factory.getBean("memmemService");
 
 		MemmemVO vo=new MemmemVO();
-		vo.setId("admin");
+		vo.setId("kim");
 		vo.setPassword("1234");
 		
 		MemmemVO data = ms.getBoard(vo);
