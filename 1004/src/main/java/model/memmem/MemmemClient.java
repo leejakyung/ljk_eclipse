@@ -1,7 +1,5 @@
 package model.memmem;
 
-import java.util.List;
-
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
@@ -12,10 +10,10 @@ public class MemmemClient {
 		MemmemService ms=(MemmemService)factory.getBean("memmemService");
 
 		MemmemVO vo=new MemmemVO();
-		vo.setId("kim");
+		vo.setId("admin");
 		vo.setPassword("1234");
 		
-		MemmemVO data = ms.getBoard(vo);
+		MemmemVO data = ms.getMem(vo);
 		
 		if(data!=null) {
 			// 로그인 성공

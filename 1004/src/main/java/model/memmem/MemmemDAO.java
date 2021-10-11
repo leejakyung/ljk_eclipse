@@ -23,7 +23,7 @@ public class MemmemDAO {
 	private final String getMemListSQL="select * from memmem order by id desc";*/
 	private final String getMemSQL="select * from memmem where id =? and password=?";
 	
-	public MemmemVO getBoard(MemmemVO vo) {
+	public MemmemVO getMem(MemmemVO vo) {
 		// 로그인에 성공한다면, MemmemVO 객체가 리턴(반환)
 		// 실패한다면, 리턴이 null
 		MemmemVO data=null;

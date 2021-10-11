@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service;
 public class MemmemServiceImpl implements MemmemService {
 
 	@Autowired
-	private MemmemDAO memmemDAO;
+	private SpringMemDAO memmemDAO;
 	
 	@Override
-	public MemmemVO getBoard(MemmemVO vo) {
+	public MemmemVO getMem(MemmemVO vo) {
 		// TODO Auto-generated method stub
-		return memmemDAO.getBoard(vo);
+		return memmemDAO.getMem(vo);
 	}
-
 
 
 }

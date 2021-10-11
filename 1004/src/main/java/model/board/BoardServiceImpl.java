@@ -11,7 +11,7 @@ import com.lee.app.common.LogPlusAdvice;
 public class BoardServiceImpl implements BoardService{
 
 	@Autowired
-	private BoardDAO boardDAO;
+	private SpringBoardDAO boardDAO;
 	/*private LogPlusAdvice logPlusAdvice;*/
 	
 	/*public BoardServiceImpl() {
