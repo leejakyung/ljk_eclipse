@@ -11,7 +11,7 @@ import model.member2.Member2VO;
 @Aspect
 public class AfterReturningAdvice {
 
-	@AfterReturning(pointcut="PointcutCommon.cPointcut()", returning="obj")
+	@AfterReturning(pointcut="PointcutCommon.cPointcut()", returning="obj") 
 	public void printLog(JoinPoint jp,Object obj) {
 		String name=jp.getSignature().getName();
 		System.out.println("메서드명: "+name);

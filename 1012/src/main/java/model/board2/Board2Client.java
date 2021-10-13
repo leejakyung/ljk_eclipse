@@ -16,7 +16,7 @@ public class Board2Client {
 
 		AbstractApplicationContext factory=new GenericXmlApplicationContext("applicationContext.xml");
 
-		Board2Service bs=(Board2Service)factory.getBean("board2Service");
+		Board2Service bs=(Board2Service)factory.getBean("board2Service"); 
 	
 		
 		Board2VO vo=new Board2VO();

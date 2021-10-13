@@ -10,7 +10,7 @@ import org.springframework.util.StopWatch;
 @Aspect
 public class AroundAdvice {
 	
-	@Around("PointcutCommon.cPointcut()")
+	@Around("PointcutCommon.cPointcut()") 
 	public Object printLog(ProceedingJoinPoint pjp) throws Throwable{
 		System.out.println("pjp인자를 갖는 메서드에서 출력하는 문구 -1");
 		System.out.println("메서드명: "+pjp.getSignature().getName());
@@ -18,7 +18,7 @@ public class AroundAdvice {
 		
 		sw.start();
 		
-		Object obj=pjp.proceed();
+		Object obj=pjp.proceed(); // == 비즈니스메서드 가 이곳에서 실행될 것이라고 선언 
 		
 		sw.stop();
 		

@@ -24,7 +24,7 @@ class Board2RowMapper implements RowMapper<Board2VO>{
 	}
 }
 
-@Repository
+@Repository // component의 하위개념 //  DB에 접근하는 모든 코드가 모여있음. // 아 이거 dao구나 라고 생각할 수 있음!
 public class SpringBoard2DAO{
 	
 	
@@ -35,7 +35,7 @@ public class SpringBoard2DAO{
 	private final String getBoardListSQL="select * from board2 order by id desc";
 	private final String getSearchSQL="select* from board2 where title like ?";
 
-	@Autowired
+	@Autowired // 생성자주입. setter주입.
 	private JdbcTemplate jdbcTemplate;
 	
 	public void insertBoard(Board2VO vo) {
