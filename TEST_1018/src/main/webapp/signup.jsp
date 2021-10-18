@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입페이지</title>
 <script src="jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
  	function checkID() { // 회원 가입 시 ID 중복 체크하는 함수
 		$.ajax({
 			type : "GET", // 단순 정보 조회 시에는 GET, 정보가 너무 많거나 insert/update를 할때는 POST
@@ -29,7 +29,7 @@
 			}
 		});
 	}
-</script>
+</script> -->
 </head>
 <body>
 
