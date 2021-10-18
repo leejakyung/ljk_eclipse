@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="model.*"%>
-   <%request.setCharacterEncoding("UTF-8"); %>    
-<jsp:useBean id="loginDAO" class="model.LoginDAO" />
-<jsp:useBean id="loginVO" class="model.LoginVO" scope="session"/>
+    pageEncoding="UTF-8" import="model.common.*"%>
+   <%
+   	request.setCharacterEncoding("UTF-8");
+   %>    
+<jsp:useBean id="loginDAO" class="model.common.LoginDAO" />
+<jsp:useBean id="loginVO" class="model.common.LoginVO" scope="session"/>
 <jsp:setProperty property="*" name="loginVO" />
 <%
 String action=request.getParameter("action");

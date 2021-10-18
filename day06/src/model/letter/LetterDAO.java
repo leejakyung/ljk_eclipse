@@ -72,7 +72,7 @@ public class LetterDAO {
 		Connection conn=JDBC.connect();
 		boolean res=false;
 		PreparedStatement pstmt=null;
-		try{ // 이전페이지 form.jsp에서 인자로 몇개가 넘어오는가? 
+		try{ 
 			String sql="insert into letter values((select nvl(max(lnum),0)+1 from letter),?,?,?,sysdate)";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getWriter()); 

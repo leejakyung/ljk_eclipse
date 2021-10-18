@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.common.JDBC;
+import model.common.JNDI;
 
 
 public class Bank1DAO {
@@ -17,7 +17,7 @@ public class Bank1DAO {
 	
 
 	public Bank1VO getBank1() {
-		conn=JDBC.connect();
+		conn=JNDI.connect();
 		String sql="select * from bank1 where bid = 1001";
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -35,14 +35,14 @@ public class Bank1DAO {
 			e.printStackTrace();
 		}
 		finally {
-			JDBC.disconnect(pstmt, conn);
+			JNDI.disconnect(pstmt, conn);
 		}
 		return data; // void가 아닐때는 리턴해줘야함
 	}
 	
 	
 	public boolean trans(int bal) {
-		conn=JDBC.connect();
+		conn=JNDI.connect();
 		try {
 			conn.setAutoCommit(false); // set autocommit=0;
 			String sql1="update bank1 set balance=balance-? where bid=1001";
@@ -75,7 +75,7 @@ public class Bank1DAO {
 			
 			conn.setAutoCommit(true); // set autocommit=0;
 			rs.close();
-			JDBC.disconnect(pstmt, conn);
+			JNDI.disconnect(pstmt, conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		

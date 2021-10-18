@@ -3,8 +3,9 @@
 <jsp:useBean id="calc" class="test.CalcBean" />
 <%-- CalcBean클래스에서 calc의 객체를 생성 == 객체화 == 인스턴스화 --%>
 <jsp:setProperty property="*" name="calc"/>
-
+<!-- 기본생성자를 생성한뒤 setter로 받아옴 -->
 <!DOCTYPE html>
+
 
 <%-- 계산하는 기능을 호출 --%>
 <% calc.calculate(); %>

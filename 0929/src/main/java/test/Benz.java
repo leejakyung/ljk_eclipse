@@ -1,20 +1,36 @@
 package test;
 
 public class Benz implements Car{
+	
+
+
+	private Key key;
+	private String user;
 
 	public Benz() {
 		System.out.println("º¥Ã÷ ±âº»»ý¼ºÀÚ È£ÃâµÊ!");
 	}
 	
-
+	
+	public void setKey(Key key) {
+		this.key = key;
+	}
+	
+	
+	public void setUser(String user) {
+		this.user = user;
+	}
+	
 	@Override
 	public void ON() {
-		System.out.println("º¥Ã÷ ½Ãµ¿ÄÑ±â");
+		key.ON();
+		//System.out.println("º¥Ã÷ ½Ãµ¿ÄÑ±â");
 	}
 
 	@Override
 	public void OFF() {
-		System.out.println("º¥Ã÷ ½Ãµ¿²ô±â");
+		key.OFF();
+		//System.out.println("º¥Ã÷ ½Ãµ¿²ô±â");
 	}
 
 

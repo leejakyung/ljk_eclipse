@@ -15,10 +15,13 @@ public class MessageDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 
+	boolean flag=false;
 	public ArrayList<MsgSet> selectAll(String userID,int cnt){ // 뷰에서 mcnt
 		ArrayList<MsgSet> datas = new ArrayList<MsgSet>();
 		conn = JNDI.connect();
 		String sql;
+		
+	
 		//System.out.println("3");
 		try {
 			if((userID==null) || (userID.equals(""))){
@@ -58,7 +61,7 @@ public class MessageDAO {
 				pstmt = conn.prepareStatement(rsql);
 				pstmt.setInt(1, rs.getInt("mid"));
 				ResultSet rrs = pstmt.executeQuery();
-				int rcnt=0;
+				//int rcnt=0;
 				while(rrs.next()) {
 					System.out.println("5");
 					ReplyVO r = new ReplyVO();
@@ -77,16 +80,12 @@ public class MessageDAO {
 				datas.add(ms);
 				rrs.close();
 			}
+			
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			JNDI.disconnect(pstmt, conn);
 		}		
 		return datas;
 	}
@@ -101,19 +100,15 @@ public class MessageDAO {
 			pstmt.setString(2, vo.getMsg());
 			pstmt.executeUpdate();
 			System.out.println("인서트2");
+			
+			flag=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		}
 		finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			JNDI.disconnect(pstmt, conn);
 		}
-		return true;
+		return flag;
 	}
 	public boolean delete(MessageVO vo) {
 		conn = JNDI.connect();
@@ -122,19 +117,21 @@ public class MessageDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, vo.getMid());
 			pstmt.executeUpdate();
+			
+			flag=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		}
 		finally {
-			try {
+			JNDI.disconnect(pstmt, conn);
+			/*try {
 				pstmt.close();
 				conn.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
-		return true;	
+		return flag;	
 	}
 	public void update(MessageVO vo) {
 		conn = JNDI.connect();
@@ -148,12 +145,7 @@ public class MessageDAO {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			JNDI.disconnect(pstmt, conn);
 		}
 	}
 }

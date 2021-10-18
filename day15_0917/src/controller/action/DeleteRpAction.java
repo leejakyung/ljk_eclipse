@@ -35,7 +35,7 @@ public class DeleteRpAction implements Action {
 		
 		
 		
-		String mcntt=request.getParameter("mcnt");
+		/*String mcntt=request.getParameter("mcnt");
 		int mcnt=3;
 		if(mcntt!=null){
 			mcnt=Integer.parseInt(mcntt);
@@ -45,7 +45,7 @@ public class DeleteRpAction implements Action {
 		MessageDAO mDAO=new MessageDAO();
 		UserDAO uDAO=new UserDAO();
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
-		ArrayList<UserVO> newUsers=uDAO.selectAll();
+		ArrayList<UserVO> newUsers=uDAO.selectAll();*/
 
 		/*request.setAttribute("datas", datas);
 		request.setAttribute("newUsers", newUsers);

@@ -3,7 +3,6 @@ package model.board2;
 
 
 import java.util.List;
-import java.util.Scanner;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;

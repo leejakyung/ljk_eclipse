@@ -28,7 +28,7 @@ public class LogoutAction implements Action{
 		uVO.setUserID(request.getParameter("userID"));
 		
 		HttpSession session=request.getSession();
-		session.invalidate();
+		session.invalidate(); // 세션에 저장되어 있는 정보를 모두 지워주는 역할
 		forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("main.do");

@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+
 %>
 <jsp:useBean id="datas" class="java.util.ArrayList" scope="session" />
 <jsp:useBean id="memberVO" class="model.member.MemberVO" scope="session" />

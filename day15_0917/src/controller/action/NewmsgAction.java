@@ -31,7 +31,7 @@ public class NewmsgAction implements  Action {
 		}
 		
 		
-		String mcntt=request.getParameter("mcnt");
+		/*String mcntt=request.getParameter("mcnt");
 		int mcnt=3;
 		if(mcntt!=null){
 			mcnt=Integer.parseInt(mcntt);
@@ -41,7 +41,7 @@ public class NewmsgAction implements  Action {
 
 		UserDAO uDAO=new UserDAO();
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
-		ArrayList<UserVO> newUsers=uDAO.selectAll();
+		ArrayList<UserVO> newUsers=uDAO.selectAll();*/
 
 		/*request.setAttribute("datas", datas);
 		request.setAttribute("newUsers", newUsers);

@@ -32,6 +32,7 @@ public class TestListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce)  { 
          ServletContext context =sce.getServletContext();
          context.setAttribute("student", new Student("홍길동", 97));
+         // 어플리케이션 스코프에 적용됨
     }
 	
 }

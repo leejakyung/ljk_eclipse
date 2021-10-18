@@ -8,6 +8,7 @@ public class BoardVO {
 	private String writer;
 	private String content;
 	private Date wdate;
+	
 	public int getId() {
 		return id;
 	}

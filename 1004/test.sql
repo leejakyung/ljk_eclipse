@@ -20,6 +20,4 @@ insert into memmem values('admin','1234','°ü¸®ÀÚ','ADMIN');
 
 select * from memmem;
 
-insert into board (id,title,writer,content) values(1,'Á¦¸ñ','±è¾¾','±Û ³»¿ë')
-
-select * from b;
+insert into board (id,title,writer,content) values(1,'Á¦¸ñ','±è¾¾','±Û ³»¿ë');

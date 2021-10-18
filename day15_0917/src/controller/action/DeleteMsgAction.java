@@ -32,7 +32,7 @@ public class DeleteMsgAction implements Action {
 		
 		
 		
-		
+		/*
 		String mcntt=request.getParameter("mcnt");
 		int mcnt=3;
 		if(mcntt!=null){
@@ -43,7 +43,9 @@ public class DeleteMsgAction implements Action {
 
 		UserDAO uDAO=new UserDAO();
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
-		ArrayList<UserVO> newUsers=uDAO.selectAll();
+		ArrayList<UserVO> newUsers=uDAO.selectAll();*/ 
+		// mainAction 에서 불러주기 때문에 이곳에서 페이징 처리 할 필요 xxx
+		// get방식으로 url을 받아 쓰기 때문에 main.do에 유지가 계속됨 
 
 		/*request.setAttribute("datas", datas);
 		request.setAttribute("newUsers", newUsers);
@@ -51,6 +53,8 @@ public class DeleteMsgAction implements Action {
 		request.setAttribute("mcnt", mcnt);*/
 
 		forward.setRedirect(false);
+		// true -> redirect 방식으로 보내겠다
+		// false -> redirect 방식으로 보내지 않겠다 
 		forward.setPath("main.do");
 		return forward;
 	}

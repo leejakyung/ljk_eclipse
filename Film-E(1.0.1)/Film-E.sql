@@ -10,10 +10,11 @@ drop table client;
 insert into client values('asdf','a12345','abc1234@naver.com');
 insert into client values('apple','a12345','apple321@gmail.com');
 insert into client values('kiwi777','a12345','kiwi777@naver.com');
+insert into client values('admin','1004','admin777@naver.com');
 
 CREATE table MOVIE(
 	MPK VARCHAR2(20) PRIMARY KEY,
-	TITLE VARCHAR2(100) UNIQUE NOT NULL,
+	TITLE VARCHAR2(100) NOT NULL,
 	CONTENT VARCHAR2(4000) NOT NULL,
 	MTYPE VARCHAR2(20) NOT NULL,
 	MDATE DATE NOT NULL,

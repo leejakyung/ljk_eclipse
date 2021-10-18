@@ -39,8 +39,8 @@
 			<tr>
 				<td>ID</td>
 				<td><input type="text" name="userID" id="userID" required></td>
-				<td><button type="button" name="btn" id="idcheck"
-						onclick="checkID()">ID 중복확인</button></td>
+			<!-- 	<td><button type="button" name="btn" id="idcheck"
+						onclick="checkID()">ID 중복확인</button></td> -->
 			</tr>
 			<tr>
 				<td>PW</td>

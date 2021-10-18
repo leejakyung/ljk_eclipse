@@ -34,23 +34,6 @@ public class NewrpAction implements Action{
 		}
 		
 		
-		String mcntt=request.getParameter("mcnt");
-		int mcnt=3;
-		if(mcntt!=null){
-			mcnt=Integer.parseInt(mcntt);
-		}
-
-		String selUser=request.getParameter("selUser");
-
-		MessageDAO mDAO=new MessageDAO();
-		UserDAO uDAO=new UserDAO();
-		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
-		ArrayList<UserVO> newUsers=uDAO.selectAll();
-
-	/*	request.setAttribute("datas", datas);
-		request.setAttribute("newUsers", newUsers);
-		request.setAttribute("selUser", selUser);
-		request.setAttribute("mcnt", mcnt);*/
 
 		forward.setRedirect(false);
 		forward.setPath("main.do");

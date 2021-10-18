@@ -20,9 +20,9 @@
     <error-code>404</error-code>
     <location>/error/error404.jsp</location>
   </error-page>
-  <resource-ref>
+  <!-- <resource-ref> 여기서도 선언하고 JNDI에서도 선언하기 때문에 충돌이 일어날 수 있음
     <res-ref-name>jdbc/orcl</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
-  </resource-ref>
+  </resource-ref> -->
 </web-app>

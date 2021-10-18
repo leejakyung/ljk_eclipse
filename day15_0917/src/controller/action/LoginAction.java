@@ -17,7 +17,7 @@ import model.user.UserVO;
 public class LoginAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) // 여기에 세션 선언 가능 
 			throws ServletException, IOException {
 		
 		ActionForward forward = null;
@@ -31,7 +31,7 @@ public class LoginAction implements Action {
 		uVO.setUserID(request.getParameter("userID"));
 		
 		if(uDAO.login(uVO)) {
-			HttpSession session=request.getSession();
+			HttpSession session=request.getSession(); // 그럼 이 곳에 작성하지 않아도 ok
 			session.setAttribute("seUser", uVO.getUserID());
 			forward = new ActionForward();
 			forward.setRedirect(false);

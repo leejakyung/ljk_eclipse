@@ -29,8 +29,8 @@ public class ReplyDAO {
 			pstmt.setInt(1, vo.getMid());
 			pstmt.executeUpdate();
 
-			conn.setAutoCommit(true);
 			result = true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -39,9 +39,11 @@ public class ReplyDAO {
 			try {
 				if(result) {
 					conn.commit();
+					conn.setAutoCommit(true);
 				}
 				else {
 					conn.rollback();
+					conn.setAutoCommit(true);
 				}
 				pstmt.close();
 				conn.close();
@@ -66,7 +68,7 @@ public class ReplyDAO {
 			pstmt.setInt(1, vo.getMid());
 			pstmt.executeUpdate();
 
-			conn.setAutoCommit(true);
+		
 			result = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,9 +78,11 @@ public class ReplyDAO {
 			try {
 				if(result) {
 					conn.commit();
+					conn.setAutoCommit(true);
 				}
 				else {
 					conn.rollback();
+					conn.setAutoCommit(true);
 				}
 				pstmt.close();
 				conn.close();

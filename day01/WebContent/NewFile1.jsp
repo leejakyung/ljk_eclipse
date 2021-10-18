@@ -5,7 +5,8 @@
 <%
 	// 변수 선언
 	int result = 0;
-
+	
+	// 내장 객체
 	if (request.getMethod().equals("POST")) { // 무조건 대문자 작성
 		String op = request.getParameter("op");
 

@@ -7,30 +7,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.common.JNDI;
+import model.movie.MovieVO;
 
 public class ReviewDAO {
 	
-	String rSelectAll = "select * from review order by rpk desc"; //최근 리뷰부터 조회
-	String insert = "insert into review (rpk, comment, id, mpk, date) values(nvl((select max(rpk) from review),0)+1, ?, ?, ?, sysdate)"; // 리뷰 등록
+	String rSelectAll = "select * from review where mpk = ? order by rpk desc"; // 선택한 영화에 해당되는 최근 리뷰부터 조회
+	String insert = "insert into review (rpk, cmt, id, mpk, date) values(nvl((select max(rpk) from review),0)+1, ?, ?, ?, sysdate)"; // 리뷰 등록
 	String delete= "delete from review where rpk = ?"; // 리뷰 삭제
 
 	Connection conn=null;
 	PreparedStatement pstmt=null;
 	
-	public ArrayList<ReviewVO> r_selectDB_all()	{ // 리뷰 조회
+	public ArrayList<ReviewVO> r_selectDB_all(MovieVO vo)	{ // 리뷰 조회
 		
 		conn=JNDI.connect();
 		ArrayList<ReviewVO> datas= new ArrayList<ReviewVO>();
 		
 		try {
-			// String sql = "select * from review order by rpk desc"; //최근 리뷰부터 조회
 			
 			pstmt = conn.prepareStatement(rSelectAll);
+			pstmt.setString(1, vo.getMpk());
 			ResultSet rs= pstmt.executeQuery();
+			
 			while(rs.next()) {
 				ReviewVO data = new ReviewVO();
 				data.setRpk(rs.getInt("rpk"));
-				data.setComment(rs.getString("comment"));
+				data.setCmt(rs.getString("cmt"));
 				data.setId(rs.getString("id"));
 				data.setMpk(rs.getString("mpk"));
 				data.setDate(rs.getDate("date"));
@@ -55,7 +57,7 @@ public class ReviewDAO {
 	
 		try {
 			pstmt=conn.prepareStatement(insert);
-			pstmt.setString(1, vo.getComment());
+			pstmt.setString(1, vo.getCmt());
 			pstmt.setString(2, vo.getId());
 			pstmt.setString(3, vo.getMpk());
 			pstmt.executeUpdate();

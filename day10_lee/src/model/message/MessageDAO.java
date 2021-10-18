@@ -27,7 +27,7 @@ public class MessageDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				MessageVO data = new MessageVO();
-				data.setContent(rs.getNString("content"));
+				data.setContent(rs.getString("content"));
 				data.setMnum(rs.getInt("mnum"));
 				data.setTitle(rs.getString("title"));
 				data.setWdate(rs.getDate("wdate"));

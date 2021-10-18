@@ -41,7 +41,7 @@ public class MainAction implements Action {
 		request.setAttribute("newUsers", newUsers);
 		request.setAttribute("selUser", selUser);
 		request.setAttribute("mcnt", mcnt);
-
+		
 		forward.setRedirect(false);
 		forward.setPath("main.jsp");
 		return forward;

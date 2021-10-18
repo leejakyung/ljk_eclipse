@@ -4,11 +4,49 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 	
 	
-	<bean class="test.BMW" id="car">
-		<constructor-arg ref="benz"></constructor-arg>
+	<!-- <bean class="test.BMW" id="car">
+		<constructor-arg ref="benz"></constructor-arg> 생성자 주입
 		<constructor-arg value="lee"></constructor-arg>
 	</bean>
-	
+	 -->
+	 
+	 <bean class="test.Benz" id="car">
+	 	<property name="key" ref="benz"></property>
+	 	<property name="user" value="jakyung"></property>
+	 </bean>
+	 
+	 <bean class="test.CarBean" id="cb">
+	 	<property name="list">
+	 		<list>
+	 			<value>[ 벤츠 차종 ]</value>
+	 			<value>벤츠 C클래스</value>
+	 			<value>벤츠 E클래스</value>
+	 			<value>벤츠 마이바흐 S클래스</value>
+	 			<value>벤츠 G바겐</value>
+	 			<value>벤츠 GLE 쿠페</value>
+	 		</list>
+	 	</property>
+	 </bean>
+	 
+	 <bean class="test.CarBean" id="cbm">
+	 	<property name="map">
+	 		<map>
+	 			<entry>
+	 				<key><value>010-1234-4567</value></key> <!-- 키는 중복xxx -->
+	 				<value>차주: 티모</value>  <!-- value 중복가능! -->
+	 			</entry>
+	 				<entry>
+	 				<key><value>010-7777-8282</value></key>
+	 				<value>차주: 미스포츈</value>
+	 			</entry>
+	 				<entry>
+	 				<key><value>010-9435-1004</value></key>
+	 				<value>차주: 샤코</value>
+	 			</entry>
+	 		</map>
+	 	</property>
+	 </bean>
+	 
 	<bean class="test.SmartKey" id="bmw" />
 	<bean class="test.NormalKey" id="benz" />
 	

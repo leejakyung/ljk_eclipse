@@ -51,7 +51,7 @@
 	<c:set var="m" value="${v.m}"/>
 	<h3>[${m.userID}] ${m.msg} &gt;&gt; [좋아요 ${m.favcount} | 댓글 ${m.replycount} | ${m.mdate}]
 	
-	<a href="control.jsp?action=updatemsg&mid=${m.mid}&mcnt=${mcnt}">♥</a>
+	<a href="control.jsp?action=updatemsg&mid=${m.mid}&mcnt=${mcnt}&selUser=${selUser}">💚</a>
 	
 	<c:if test="${seUser == m.userID}">
 	<input type="button" value="삭제" onclick="del(${m.mid},${mcnt})"> <!-- 스크립트에 받아온 인자를 넣어줌  -->
@@ -111,7 +111,7 @@
 <h4>신규 회원 목록</h4>
 <ol>
 	<c:forEach var="u" items="${newUsers}">
-		<li><a href="control.jsp?action=main&mcnt=${mcnt}&selUser=${u.userID}">${u.name}</a>님, 가입</li>
+		<li><a href="control.jsp?action=main&mcnt=${mcnt}&selUser=${u.userID}">${u.name}</a>님  가입</li>
 	</c:forEach>
 </ol>
 </div>

@@ -17,6 +17,7 @@ public class MovieDAO {
 	String rdelete = "DELETE FROM REVIEW WHERE MPK = ?";					//리뷰 삭제
 
 	String selectAll = "SELECT * FROM MOVIE ORDER BY TITLE ASC";			//영화 전체 리스트
+	String selectAllt = "SELECT * FROM MOVIE WHERE MTYPE = ? ORDER BY TITLE ASC";
 	String mpk = "SELECT MPK FROM MOVIE";			//영화 전체 리스트
 	String selectOne = "SELECT * FROM MOVIE WHERE MPK = ?";					//영화 클릭
 	String search = "SELECT * FROM MOVIE WHERE TITLE LIKE ORDER BY TITLE ASC";		//영화 검색
@@ -32,11 +33,22 @@ public class MovieDAO {
 
 	boolean flag = false;
 
-	public ArrayList<MovieVO> m_selectDB_all(){			//영화 전체 리스트
+	public ArrayList<MovieVO> m_selectDB_all(String type){			//영화 리스트
 		datas = new ArrayList<MovieVO>();
 		conn = JNDI.connect();
 		try {
-			pstmt=conn.prepareStatement(selectAll);
+			
+			if(type == null || type.equals("")) {				//type 이 없을때는 전체 리스트 출력
+				pstmt=conn.prepareStatement(selectAll);
+				System.out.println("전체 리스트");
+			}
+			
+			else{												//type이 있을때는 type 장르 리스트만 출력
+				pstmt=conn.prepareStatement(selectAllt);
+				pstmt.setString(1, type);
+				System.out.println(type+" 리스트");
+			}
+			
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				data = new MovieVO();
@@ -49,7 +61,7 @@ public class MovieDAO {
 				datas.add(data);
 			}
 			rs.close();
-			System.out.println("MovieDAO 영화 전체 리스트 :" + datas);
+			System.out.println("MovieDAO 영화 리스트 :" + datas);
 		}
 		catch (SQLException e) {
 			System.out.println("MovieDAO 영화 전체 리스트 오류");
@@ -233,7 +245,6 @@ public class MovieDAO {
 			e.printStackTrace();
 			System.out.println("MovieDAO delete 트랜잭션 오류");
 			conn.rollback();		//롤백
-			flag = false;
 		}finally {
 			conn.setAutoCommit(true);
 			JNDI.disconnect(pstmt, conn);				

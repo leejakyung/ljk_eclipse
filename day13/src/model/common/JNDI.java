@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class JDBC {
+public class JNDI {
 	public static Connection connect() {
 		Connection conn=null;
 		

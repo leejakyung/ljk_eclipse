@@ -31,24 +31,11 @@ public class NewUserAction implements Action{
 			throw new IOException("newuser에서 발생!");
 		}
 		
-		String mcntt=request.getParameter("mcnt");
-		int mcnt=3;
-		if(mcntt!=null){
-			mcnt=Integer.parseInt(mcntt);
-		}
-
-		String selUser=request.getParameter("selUser");
-		MessageDAO mDAO=new MessageDAO();
-		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
-		ArrayList<UserVO> newUsers=uDAO.selectAll();
-
-		/*request.setAttribute("datas", datas);
-		request.setAttribute("newUsers", newUsers);
-		request.setAttribute("selUser", selUser);
-		request.setAttribute("mcnt", mcnt);*/
+		// sendRedirect == 다음 페이지에 정보를 넘길때 url과 post 정보를 초기화하고 보내는 것, 정보를 보내주고 없애는것  ex)delete
+		// forward == 정보를 유지시켜서 전달해주는 방식 , 정보를 보내준 것을 한번 더 유지시켜줌
 
 		forward.setRedirect(false);
-		forward.setPath("main.do");
+		forward.setPath("main.do"); 
 		return forward;
 	}
 }

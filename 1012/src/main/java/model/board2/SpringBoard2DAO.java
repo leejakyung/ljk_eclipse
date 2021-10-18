@@ -24,6 +24,7 @@ class Board2RowMapper implements RowMapper<Board2VO>{
 	}
 }
 
+// 서랍 == service 가방,양말,바지 == repository 라고 이해하면 좋을듯!
 @Repository // component의 하위개념 //  DB에 접근하는 모든 코드가 모여있음. // 아 이거 dao구나 라고 생각할 수 있음!
 public class SpringBoard2DAO{
 	

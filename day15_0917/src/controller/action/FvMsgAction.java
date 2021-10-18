@@ -29,7 +29,7 @@ public class FvMsgAction implements Action{
 		mDAO.update(mVO); // void 이기 때문에 
 		
 		
-		
+		/*
 		String mcntt=request.getParameter("mcnt");
 		int mcnt=3;
 		if(mcntt!=null){
@@ -41,7 +41,7 @@ public class FvMsgAction implements Action{
 		UserDAO uDAO=new UserDAO();
 		ArrayList<MsgSet> datas=mDAO.selectAll(selUser, mcnt);
 		ArrayList<UserVO> newUsers=uDAO.selectAll();
-
+*/
 		/*request.setAttribute("datas", datas);
 		request.setAttribute("newUsers", newUsers);
 		request.setAttribute("selUser", selUser);

@@ -13,6 +13,8 @@ public class UserDAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	
+	boolean flag = false;
+	
 	public boolean insert(UserVO vo) {
 		conn = JNDI.connect();
 		String sql = "insert into clients(userID,name,upw,udate) values(?,?,?,sysdate)";
@@ -22,18 +24,14 @@ public class UserDAO {
 			pstmt.setString(2, vo.getName());
 			pstmt.setString(3, vo.getUpw());
 			pstmt.executeQuery();
+			
+			flag=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		} finally {
-			try {
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			JNDI.disconnect(pstmt, conn); 
 		}
-		return true;
+		return flag;
 	}
 	
 	public boolean login(UserVO vo) {
@@ -49,17 +47,13 @@ public class UserDAO {
 				result = true;
 			}
 				
+			rs.close();
+			
+			result=true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
 		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			JNDI.disconnect(pstmt, conn);
 		}
 		return result;
 	}
@@ -81,17 +75,13 @@ public class UserDAO {
 				data.setUserID(rs.getString("userID"));
 				datas.add(data);
 			}
+			
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			JNDI.disconnect(pstmt, conn);
 		}
 		return datas;
 	}
