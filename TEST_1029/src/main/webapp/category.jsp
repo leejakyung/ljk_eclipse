@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>
+<!-- 메인 페이지 -->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
-
-<!--- basic page needs
-    ================================================== -->
-<meta charset="utf-8">
-<title>Styles - Typerite</title>
 <script type="text/javascript">
 	function logout() {
 		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {
@@ -18,56 +14,55 @@
 		}
 	}
 </script>
-<meta name="description" content="">
-<meta name="author" content="">
+<head>
 
-<!-- mobile specific metas
+    <!--- basic page needs
     ================================================== -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Typerite</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<!-- CSS
+    <!-- mobile specific metas
     ================================================== -->
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/vendor.css">
-<link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style type="text/css" media="screen">
-.s-styles {
-	max-width: 1100px;
-	padding-bottom: 12rem;
-}
-</style>
-
-<!-- script
+    <!-- CSS
     ================================================== -->
-<script src="js/modernizr.js"></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
 
-<!-- favicons
+    <!-- script
     ================================================== -->
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
+    <script src="js/modernizr.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
 
 </head>
 
-<body class="ss-bg-white">
+<body>
 
-	<!-- preloader
+    <!-- preloader
     ================================================== -->
-	<div id="preloader">
-		<div id="loader" class="dots-fade">
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-	</div>
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 
-	<div id="top" class="s-wrap site-wrapper">
+    <div id="top" class="s-wrap site-wrapper">
 
-		<!-- site header
+        <!-- site header
         ================================================== -->
-		        <header class="s-header">
+        <header class="s-header">
 
             <div class="header__top">
                 <div class="header__logo">
@@ -124,7 +119,7 @@
                     <li><a href="login.do" title="">Login</a></li>
                     </c:if>
                     <c:if test="${seUser.email!=null}">
-                    <li><a href="mypage.jsp">Mypage</a></li>
+                    <li><a href="mine.jsp">Mypage</a></li>
                     <li><a href="#;" onclick="logout()">Logout</a></li>
                     </c:if>
                 </ul> <!-- end header__nav -->
@@ -162,111 +157,42 @@
 
 		<!-- site content
         ================================================== -->
+
+			<article class="column large-full entry format-standard">
+
+
 		<div class="s-content content">
+			<main class="row content__page">
 
-			<div class="column large-6 tab-full" style="max-width: 100%">
 
-				<h3>Q&A</h3>
 
-				<br>
-				<form action="list.do" method="post">
+				<div class="entry__content">
 
-					<div class="column large-full">
 
-						<div class="table-responsive">
 
-							<table>
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Title</th>
-										<th>Comment</th>
-										<th>Date</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach var="v" items="${datas}">
-									<tr>
-										<td>${v.userID}</td>
-										<td>${v.title}</td>
-										<td>${v.comment}</td>
-										<td>${v.cdate}</td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>
 
-						</div>
+					<div class="entry__related">
 
+						<ul class="related">
+						<c:forEach var="v" items="${datas}">
+							<li class="related__item">
+							<a href="shoesList.do?spk=${v.spk}" class="related__link"> 
+							<img src="images/${v.filename}" alt="신발이미지">
+							</a>
+								<h5 class="related__post-title">${v.sname}<br>${v.price}원</h5></li>
+						</c:forEach>			
+							
+						</ul>
 					</div>
-					<!-- end row -->
-				</form>
-
-
-
-				<div class="row">
-					<div class="column large-full">
-						<nav class="pgn">
-							<ul>
-								<li><a class="pgn__prev" href="#0">Prev</a></li>
-								<li><a class="pgn__num" href="#0">1</a></li>
-								<li><span class="pgn__num current">2</span></li>
-								<li><a class="pgn__num" href="#0">3</a></li>
-								<li><a class="pgn__num" href="#0">4</a></li>
-								<li><a class="pgn__num" href="#0">5</a></li>
-								<li><span class="pgn__num dots">…</span></li>
-								<li><a class="pgn__num" href="#0">8</a></li>
-								<li><a class="pgn__next" href="#0">Next</a></li>
-							</ul>
-						</nav>
-					</div>
+					<!-- end entry related -->
 				</div>
 
+			<!-- end column large-full entry--> </main>
+			</article>
 
-
-
-				<form action="minsert.do" method="post">
-
-					<label for="exampleMessage">Message</label>
-					<textarea class="full-width" placeholder="Your message"
-						id="exampleMessage" style="width: 100%"></textarea>
-
-					<input class="btn full-width" type="submit" value="add Q&A">
-				</form>
-
-
-			</div>
-
-
-		</div>
-		<!-- end s-content -->
-
-
-	<!-- footer
-        ================================================== -->
-	<footer class="s-footer footer">
-		<div class="row">
-			<div class="column large-full footer__content">
-				<div class="footer__copyright">
-					<span>© Copyright Typerite 2019</span> <span>Design by <a
-						href="https://www.styleshout.com/">StyleShout</a></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="go-top">
-			<a class="smoothscroll" title="Back to Top" href="#top"></a>
-		</div>
-	</footer>
-
-	</div>
-	<!-- end s-wrap -->
-
-
-	<!-- Java Script
+			<!-- Java Script
     ================================================== -->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/plugins.js"></script>
-	<script src="js/main.js"></script>
-
+			<script src="js/jquery-3.2.1.min.js"></script>
+			<script src="js/plugins.js"></script>
+			<script src="js/main.js"></script>
 </body>

@@ -9,8 +9,9 @@ select * from client2;
 
 create table comments( -- 코멘트 테이블
 	cnum int primary key,
+	spk varchar(30),
 	userID varchar(20) not null,
-    title varchar(15) not null,
+    -- title varchar(15) not null,
     content varchar(50) not null,
     cdate date
 );
@@ -21,9 +22,9 @@ create table shoes( -- 신발정보 테이블
 	spk varchar(30) primary key, -- 신발 품번
 	filename varchar(500) not null,
 	brandname varchar(50) not null, -- 브랜드명
-	sname varchar(50) not null, -- 신발 이름
+	sname varchar(100) not null, -- 신발 이름
 	price int not null, -- 신발 가격
-	sdate date -- 출시일
+	sdate varchar(50) -- 출시일
 ); 
 
 create table mine( -- 찜 테이블
@@ -34,7 +35,8 @@ create table mine( -- 찜 테이블
 
 drop table shoes;
 select * from shoes;
-
+select * from shoes order by spk desc;
+insert into shoes values('11','ㅇ','ㅇ','ㅇ',10000,TO_CHAR(TO_DATE('1922-10-13','YYYY-MM-DD'),'YYYY-MM-DD'));
 
 
 

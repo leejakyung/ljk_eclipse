@@ -161,31 +161,18 @@
                       
 
                         <p>
-                        <img src="images/wheel-1000.jpg" 
-                             srcset="images/wheel-2000.jpg 2000w, 
-                                     images/wheel-1000.jpg 1000w, 
-                                     images/wheel-500.jpg 500w" 
-                                     sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+                        <img src="images/${data.filename}"  alt="신발 이미지">
                         </p>
 
-                        <h2>Large Heading</h2>
-    
-                        <p>
-                        Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum 
-                        soluta nobis est eligendi optio cumque nihil impedit quo minus 
-                        <a href="http://#">omnis voluptas assumenda est</a> id quod maxime placeat 
-                        facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et aut 
-                        officiis debitis aut rerum necessitatibus saepe eveniet ut et.
-                        </p>
+                        <h2>${data.sname}</h2>
     
                         <blockquote>
                             <p>
-                            For God so loved the world, that he gave his only Son, that whoever believes in 
-                            him should not perish but have eternal life. For God did not send his Son into 
-                            the world to condemn the world, but in order that the world might be 
-                            saved through him.
+                            ${data.brandname}<br>
+                            ${data.spk}<br>
+                            ${data.price}원<br>
                             </p>
-                            <cite>John 3:16-17 ESV</cite>
+                            <cite>출시일 ${data.sdate}</cite>
                         </blockquote>
     	
                        
@@ -221,80 +208,61 @@
                 </article> <!-- end column large-full entry-->
 
 
-               <div class="row add-bottom">
+			<div class="row add-bottom">
 
-                        <div class="column large-full">
+				<div class="column large-full">
 
-                            <h3>Comment</h3>
-                           
-                            <div class="table-responsive">
+					<h3>Comment</h3>
 
-                                <table>
-                                        <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Title</th>
-                                            <th>Comment</th>
-                                            <th>date</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Naruto Uzumaki</td>
-                                            <td>16</td>
-                                            <td>Male</td>
-                                            <td>Konoha</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sakura Haruno</td>
-                                            <td>16</td>
-                                            <td>Female</td>
-                                            <td>Konoha</td>
-                                        </tr>
-                                        </tbody>
-                                </table>
+					<div class="table-responsive">
 
-                            </div>
+						<table>
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Comment</th>
+									<th>date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="v" items="${mdatas}">
+									<tr>
+										<td>${v.userID}</td>
+										<td>${v.content}</td>
+										<td>${v.cdate}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 
-                        </div>
-                        
-                    </div> <!-- end row -->    
+					</div>
 
-                    <div class="column large-12 comment-respond">
+				</div>
 
-                        <!-- START respond -->
-                        <div id="respond">
-            
-                            <h3 class="h2">Add Comment <span>Your email address will not be published</span></h3>
-            
-                            <form name="contactForm" id="contactForm" method="post" action="" autocomplete="off">
-                                <fieldset>
-            
-                                    <div class="form-field">
-                                        <input name="cName" id="cName" class="full-width" placeholder="Your Name" value="" type="text">
-                                    </div>
-            
-                                    <div class="form-field">
-                                        <input name="cEmail" id="cEmail" class="full-width" placeholder="Your Email" value="" type="text">
-                                    </div>
-            
-                                    <div class="form-field">
-                                        <input name="cWebsite" id="cWebsite" class="full-width" placeholder="Website" value="" type="text">
-                                    </div>
-            
-                                    <div class="message form-field">
-                                        <textarea name="cMessage" id="cMessage" class="full-width" placeholder="Your Message"></textarea>
-                                    </div>
-            
-                                    <input name="submit" id="submit" class="btn full-width" value="Add Comment" type="submit">
-           
-                                </fieldset>
-                            </form> <!-- end form -->
-            
-                        </div>
-                        <!-- END respond-->
-            
-                    </div> <!-- end comment-respond -->
+			</div>
+			<!-- end row -->
+
+			<div class="column large-12 comment-respond">
+
+				<!-- START respond -->
+				<div id="respond">
+
+					<form action="minsert.do" method="post">
+						<input type="hidden" value="${data.spk}" name="spk">
+						<input type="hidden" value="${seUser.userID}" name="userID">
+						<label for="exampleMessage">Message</label>
+						<input type="text" class="full-width" placeholder="Your message"
+							id="exampleMessage" name="content" style="width: 100%">
+					
+						<input class="btn full-width" type="submit" value="add comment">
+					</form>
+					
+
+				</div>
+				<!-- END respond-->
+
+			</div>
+			<!-- end comment-respond -->
             
                 </div> <!-- end comments-wrap -->
             </main>

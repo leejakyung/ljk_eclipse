@@ -1,13 +1,11 @@
 package model.comments;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import model.client2.Client2VO;
-
-@Service("CommentsService")
+@Service("commentsService")
 public class CommentsServiceImpl implements CommentsService{
 
 	@Autowired
@@ -29,13 +27,13 @@ public class CommentsServiceImpl implements CommentsService{
 	}
 
 	@Override
-	public ArrayList<CommentsVO> getDBList(Client2VO vo) {
+	public List<CommentsVO> getDBList(CommentsVO vo) {
 		return commentsDAO.getDBList(vo);
 	}
 
-	@Override
+	/*@Override
 	public CommentsVO getDBData(CommentsVO vo) {
 		return commentsDAO.getDBData(vo);
-	}
+	}*/
 
 }

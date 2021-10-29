@@ -98,10 +98,10 @@
                     <li class="has-children">
                         <a href="#0" title="">Categories</a>
                         <ul class="sub-menu">
-                        <li><a href="shoesList.jsp">Nike</a></li>
-                        <li><a href="shoesList.jsp">Adidas</a></li>
-                        <li><a href="shoesList.jsp">Vans</a></li>
-                        <li><a href="shoesList.jsp">Converse</a></li>
+                        <li><a href="category.do?brandname=Nike">Nike</a></li>
+                        <li><a href="category.do?brandname=Adidas">Adidas</a></li>
+                        <li><a href="category.do?brandname=Vans">Vans</a></li>
+                        <li><a href="category.do?brandname=Converse">Converse</a></li>
                         </ul>
                     </li>
                     <li class="has-children">

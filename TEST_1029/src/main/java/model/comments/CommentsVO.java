@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class CommentsVO {
 	private int cnum;
+	private String spk;
 	private String userID;
-	private String title;
 	private String content;
 	private String cdate;
 	
@@ -24,6 +24,12 @@ public class CommentsVO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}*/
+	public String getSpk() {
+		return spk;
+	}
+	public void setSpk(String spk) {
+		this.spk = spk;
+	}
 	public int getCnum() {
 		return cnum;
 	}
@@ -35,12 +41,6 @@ public class CommentsVO {
 	}
 	public void setUserID(String userID) {
 		this.userID = userID;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public String getContent() {
 		return content;
@@ -55,13 +55,13 @@ public class CommentsVO {
 		this.cdate = cdate;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return "CommentsVO [cnum=" + cnum + ", userID=" + userID + ", title=" + title + ", content=" + content
-				+ ", cdate=" + cdate + "]";
+		return "CommentsVO [cnum=" + cnum + ", spk=" + spk + ", userID=" + userID + ", content=" + content + ", cdate="
+				+ cdate + "]";
 	}
 	
+
 
 	
 	
