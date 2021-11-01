@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao"> <!-- 패키지명 바꿀 수 있음 -->
+
+
+	<!-- SQL문 실행결과와 자바객체(VO)를 연결해주는 매퍼(Mapper) -->
+	<resultMap type="board" id="boardResult">
+		<result property="title" column="TITLE" />
+	</resultMap> <!-- resultType을 boardResult로 설정했을경우 이렇게 사용해볼 수 있음 -->
+
+	<!-- parameterType="board"가 인자로 당연히 들어가 있을거니까 생략가능 -->
+	<!-- 인자가 다를 때 넣어주면 됨 -->
+	<insert id="insertBoard">
+		INSERT INTO BOARD (ID,TITLE,WRITER,CONTENT) VALUES((SELECT NVL(MAX(ID),0)+1 FROM BOARD),#{title},#{writer},#{content})
+	</insert>
+	<!-- 드래그 ctrl+shift+X ->대문자 변경 -->
+	
+	<update id="updateBoard">
+		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},WRITER={writer} WHERE ID=#{id}?
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE BOARD WHERE ID=#{id}?
+	</delete>
+	
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM BOARD WHERE TITLE LIKE #{keyword} ORDER BY ID DESC
+	</select>
+	
+	<select id="getBoard" resultType="board">
+		SELECT * FROM BOARD WHERE ID=#{id}
+	</select>
+
+</mapper>
