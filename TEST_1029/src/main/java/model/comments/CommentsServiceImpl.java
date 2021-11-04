@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.page.PageVO;
+
 @Service("commentsService")
 public class CommentsServiceImpl implements CommentsService{
 
@@ -27,9 +29,11 @@ public class CommentsServiceImpl implements CommentsService{
 	}
 
 	@Override
-	public List<CommentsVO> getDBList(CommentsVO vo) {
-		return commentsDAO.getDBList(vo);
+	public List<CommentsVO> getDBList(CommentsVO vo,PageVO pVO) {
+		return commentsDAO.getDBList(vo, pVO);
 	}
+
+
 
 	/*@Override
 	public CommentsVO getDBData(CommentsVO vo) {

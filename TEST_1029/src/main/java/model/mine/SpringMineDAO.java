@@ -2,11 +2,14 @@ package model.mine;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
+import model.shoes.ShoesVO;
 
 class MineRowMapper implements RowMapper<MineVO>{
 
@@ -21,20 +24,55 @@ class MineRowMapper implements RowMapper<MineVO>{
 	
 }
 
+class ShoesRowMapper implements RowMapper<ShoesVO>{
+
+	@Override
+	public ShoesVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		ShoesVO data = new ShoesVO();
+		data.setSpk(rs.getString("spk"));
+		data.setFilename(rs.getString("filename"));
+		data.setBrandname(rs.getString("brandname"));
+		data.setSname(rs.getString("sname"));
+		data.setSdate(rs.getString("sdate"));
+		data.setPrice(rs.getInt("price"));
+		return data;
+	}
+	
+}
+
 @Repository
 public class SpringMineDAO {
 	
-	private final String mine="select * from mine spk=? and email=?";
+	private final String mine="select * from mine where spk=? and email=?";
+	private final String mineIns="insert into mine values (nvl((select max(mpk) from mine),0)+1, ?, ?)";
+	private final String mineDel="delete from mine where spk=? and email=?";
+	private final String mineAll="select * from shoes inner join mine on shoes.spk = mine.spk and mine.email = ?"; // Âò ¸ñ·Ï º¸±â
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public boolean mine(MineVO vo) {
-		if(jdbcTemplate.update(mine,vo.getSpk(),vo.getEmail())>=1) {
+	public MineVO mine(MineVO vo) {
+		Object[] args= { vo.getSpk(),vo.getEmail() };
+		return jdbcTemplate.queryForObject(mine,args,new MineRowMapper());
+	}
+	public boolean mineIns(MineVO vo) {
+		if(jdbcTemplate.update(mineIns,vo.getSpk(),vo.getEmail())>=1) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
+	public boolean mineDel(MineVO vo) {
+		if(jdbcTemplate.update(mineDel,vo.getSpk(),vo.getEmail())>=1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public List<ShoesVO> getShoesList(MineVO vo){
+		Object[] args= { vo.getEmail() };
+		return jdbcTemplate.query(mineAll,args,new ShoesRowMapper());	
+	}
 }

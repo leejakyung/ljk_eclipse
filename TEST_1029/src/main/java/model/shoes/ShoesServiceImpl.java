@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import model.page.PageVO;
+
 @Service("ShoesService")
 public class ShoesServiceImpl implements ShoesService{
 	
@@ -12,8 +14,8 @@ public class ShoesServiceImpl implements ShoesService{
 	private SpringShoesDAO shoesDAO;
 
 	@Override
-	public List<ShoesVO> getShoesList(ShoesVO vo) {
-		return shoesDAO.getShoesList(vo);
+	public List<ShoesVO> getShoesList(ShoesVO vo,PageVO pVO) {
+		return shoesDAO.getShoesList(vo, pVO);
 	}
 
 	@Override

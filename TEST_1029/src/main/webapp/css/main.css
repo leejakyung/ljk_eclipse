@@ -60,6 +60,10 @@
  * # base style overrides
  *
  * ------------------------------------------------------------------- */
+/* .noShow{
+	display: none;
+}  */
+ 
 html {
   font-size: 10px;
 }

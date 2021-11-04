@@ -11,6 +11,85 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>Standard Post - Typerite</title>
+    <script type="text/javascript">
+	function logout() {
+		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {
+			location.href = "logout.do";
+		} else {
+			return;
+		}
+	}
+	
+	function sfunction(){
+		document.getElementById('styleform').submit();
+	}
+	
+	function mUP(){
+		document.getElementById('mUpdate').submit();
+	}
+	
+	function showInput(index){
+		$("#input_"+index).css('display','');
+		$("#updateButton_"+index).css('display','');
+		$("#cancleButton_"+index).css('display','');
+		$("#text_"+index).css('display','none');
+		$("#showInputButton_"+index).css('display','none');
+	}
+
+	function editCancle(index){
+		$("#input_"+index).css('display','none');
+		$("#updateButton_"+index).css('display','none');
+		$("#cancleButton_"+index).css('display','none'); //add
+		$("#text_"+index).css('display',''); //remove
+		$("#showInputButton_"+index).css('display','');
+	}
+	
+	function todoEditDB(index){ 
+		var msg = $("#input_"+index).val().replaceAll("??", "⁇").replaceAll("&","＆").replaceAll("%","％")
+		.replaceAll("+","＋").replaceAll("\\", "￦");
+		var params = "content="+$("#input_"+index).val()+"&cnum="+index;
+
+		$.ajax({
+			type:"post",
+			url:"updateTodo.do",
+			data:params,
+			dataType:"json",
+			success:function(args){
+				console.log(args);
+				// console.log("성공했으면 소리질러!!");
+				$('#text_'+index).css('display','');
+				$('#showInputButton_'+index).css('display','');
+				$('#cancleButton_'+index).css('display','none');
+				$('#input_'+index).css('display','none');
+				$('#updateButton_'+index).css('display','none');
+				
+				var v=args[0].name;
+				console.log("성공했으면 소리질러!!"+v);
+				$("#text_"+index).text(args[0].name); //보여지는 화면에서도 바꿔줄 수 있도록 !! controller랑 같이 볼 것
+			}
+		})
+	}
+	function deleteTodoDB(index){ 
+		var params = "cnum="+index;
+		$.ajax({
+			type:"post",
+			url:"deleteTodo.do",
+			data:params,
+			dataType:"json",
+			success:function(data){
+				var todoSet = document.querySelector("#todoSet_"+index);
+				todoSet.remove();
+			}
+		})
+
+	}
+	
+	
+	
+	/* .css('visibility','hidden')
+	.css('visibility','') //remove */
+	
+    </script>
     
     <meta name="description" content="">
     <meta name="author" content="">
@@ -54,97 +133,7 @@
 
         <!-- site header
         ================================================== -->
-        <header class="s-header">
-
-            <div class="header__top">
-                <div class="header__logo">
-                    <a class="site-logo" href="index.html">
-                        <img src="images/logo.svg" alt="Homepage">
-                    </a>
-                </div>
-
-                <div class="header__search">
-    
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="header__search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
-                        </label>
-                        <input type="submit" class="header__search-submit" value="Search">
-                    </form>
-        
-                    <a href="#0" title="Close Search" class="header__search-close">Close</a>
-        
-                </div>  <!-- end header__search -->
-
-                <!-- toggles -->
-                <a href="#0" class="header__search-trigger"></a>
-                <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
-
-            </div> <!-- end header__top -->
-
-            <nav class="header__nav-wrap">
-
-                <ul class="header__nav">
-                    <li class="current"><a href="main.do" title="">Home</a></li>
-                    <li class="has-children">
-                        <a href="#0" title="">Categories</a>
-                        <ul class="sub-menu">
-                        <li><a href="shoesList.jsp">Nike</a></li>
-                        <li><a href="shoesList.jsp">Adidas</a></li>
-                        <li><a href="shoesList.jsp">Vans</a></li>
-                        <li><a href="shoesList.jsp">Converse</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-children">
-                        <a href="#0" title="">About us</a>
-                        <ul class="sub-menu">
-                        <li><a href="single-gallery.html">LeeJaKyung</a></li>
-                        <li><a href="single-video.html">Blog</a></li>
-                        <li><a href="single-audio.html">Git Hub</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="styles.html" title="">Project</a></li>
-                    <li><a href="qAa.jsp" title="">Q&A</a></li>
-                    <li><a href="page-contact.html" title="">Contact</a></li>
-                    <c:if test="${seUser.email==null}">
-                    <li><a href="login.do" title="">Login</a></li>
-                    </c:if>
-                    <c:if test="${seUser.email!=null}">
-                    <li><a href="mine.jsp">Mypage</a></li>
-                    <li><a href="#;" onclick="logout()">Logout</a></li>
-                    </c:if>
-                </ul> <!-- end header__nav -->
-
-                <ul class="header__social">
-                    <li class="ss-facebook">
-                        <a href="https://facebook.com/">
-                            <span class="screen-reader-text">Instagram</span>
-                        </a>
-                    </li>
-                    <li class="ss-twitter">
-                        <a href="#0">
-                            <span class="screen-reader-text">YouTube</span>
-                        </a>
-                    </li>
-                    <li class="ss-dribbble">
-                        <a href="#0">
-                            <span class="screen-reader-text">Dribbble</span>
-                        </a>
-                    </li>
-                    <li class="ss-pinterest">
-                        <a href="#0">
-                            <span class="screen-reader-text">Behance</span>
-                        </a>
-                    </li>
-                </ul>
-
-            </nav> <!-- end header__nav-wrap -->
-
-            
-
-        </header> <!-- end s-header -->
-
+        <mytag:mainMenu />
 
         <!-- site content
         ================================================== -->
@@ -160,12 +149,27 @@
                     <div class="entry__content">
                       
 
-                        <p>
-                        <img src="images/${data.filename}"  alt="신발 이미지">
-                        </p>
+                        <div style="width: 500px; height: 500px;">
+                        <img src="images/${data.filename}"  alt="신발 이미지"> 
+                        </div>
 
-                        <h2>${data.sname}</h2>
-    
+						<c:choose> 
+						<c:when test="${seUser==null}">
+						<h2>${data.sname}&nbsp;&nbsp;<img alt="찜" src="images/BLACK.png" style="margin: auto;"></h2>
+						</c:when>
+						
+						<c:when test="${edata!=null}">
+                        <h2>${data.sname}&nbsp;&nbsp;<a href="mineDel.do?spk=${data.spk}&email=${seUser.email}"><img alt="찜" src="images/RED.png" style="margin: auto;"></a></h2>
+    					</c:when>
+    					
+    					<c:when test="${edata==null}">
+                        <h2>${data.sname}&nbsp;&nbsp;<a href="mineIns.do?spk=${data.spk}&email=${seUser.email}"><img alt="찜" src="images/BLACK.png" style="margin: auto;"></a></h2>
+    					</c:when>
+    					
+    					</c:choose>
+    					
+    					
+    					
                         <blockquote>
                             <p>
                             ${data.brandname}<br>
@@ -174,43 +178,83 @@
                             </p>
                             <cite>출시일 ${data.sdate}</cite>
                         </blockquote>
-    	
-                       
-    
+    		
+        			</div> <!-- end s-content -->
 
-                   
 
-                    <div class="entry__related">
-                        <h3 class="h2">이 상품을 본 사람들이 많이 본 게시물</h3>
 
-                        <ul class="related">
+
+
+				<div class="entry__related">
+
+
+					<form action="stinsert.do" method="post" enctype="multipart/form-data" id="styleform" name="styleform">
+					<p class="entry__tags"
+						style="float: left; margin-top: unset; font-size: xx-large;">
+						<span>Style</span> <span class="entry__tag-list"> <a href="#"
+							onclick="sfunction()" style="font-size: 1.2rem;">+사진 올리기</a>
+						</span>
+
+					</p>
+
+					<!-- <h3 class="h2" style="float: left;">Style</h3> -->
+					
+						<input type="hidden" value="${data.spk}" name="spk"> <input
+							type="hidden" value="${seUser.email}" name="email"> <input
+							type="file" name="fileUpload"
+							style="font-size: small; font-weight: 800; float: right; margin-top: 2em;">
+				
+					</form>
+				
+				</div>
+				<!-- end entry related -->
+
+
+					<div class="entry__related" style="margin-top: 125px;">
+				 		<ul class="related">
+				 			<c:forEach var="v" items="${stdatas}">
                             <li class="related__item">
-                                <a href="single-standard.html" class="related__link">
+                               <!--  <a href="single-standard.html" class="related__link">
                                     <img src="images/thumbs/masonry/walk-600.jpg" alt="">
-                                </a>
-                                <h5 class="related__post-title">Using Repetition and Patterns in Photography.</h5>
+                                </a> -->
+                                <c:if test="${v.email==seUser.email}">
+								<a href="stdelete.do?spk=${data.spk}&snum=${v.snum}&filename=${v.filename}" class="related__link">
+									<img style="position: absolute; z-index: 1;" alt="삭제 이미지"
+									src="images/del.png">
+								</a>
+								</c:if>
+							
+	
+							<a href="" class="related__link" style="width: 200px; height: 200px;">
+								<img src="images/${v.filename}" alt="신발자랑하기 이미지">
+							</a> 
                             </li>
-                            <li class="related__item">
-                                <a href="single-standard.html" class="related__link">
-                                    <img src="images/thumbs/masonry/dew-600.jpg" alt="">
-                                </a>
-                                <h5 class="related__post-title">Health Benefits Of Morning Dew.</h5>
-                            </li>
-                            <li class="related__item">
-                                <a href="single-standard.html" class="related__link">
-                                    <img src="images/thumbs/masonry/rucksack-600.jpg" alt="">
-                                </a>
-                                <h5 class="related__post-title">The Art Of Visual Storytelling.</h5>
-                            </li>
-                        </ul>
-                    </div> <!-- end entry related -->
+                            </c:forEach>
+                          
+                    	 </ul>
+                    </div>	 
+                    
+                    <a href="shoesList.do?spk=${data.spk}&scnt=${scnt+3}" class="related__link">
+						<img  alt="삭제 이미지" src="images/more.png" style="margin-left: 45%;">
+					</a>
+					
+                    
 
-                </article> <!-- end column large-full entry-->
+	
+				
+				
+				
+				
+				
+				<!-- end entry related -->
+			</article> <!-- end column large-full entry-->
+
+			
 
 
 			<div class="row add-bottom">
 
-				<div class="column large-full">
+				<div class="column large-full"  style="width: 47em;">
 
 					<h3>Comment</h3>
 
@@ -222,16 +266,75 @@
 									<th>ID</th>
 									<th>Comment</th>
 									<th>date</th>
+									<th></th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="v" items="${mdatas}">
-									<tr>
-										<td>${v.userID}</td>
-										<td>${v.content}</td>
-										<td>${v.cdate}</td>
+									<tr style="font-size: 1.5rem; font-weight: 700;" id="todoSet_${v.cnum}">
+										<th style="width: 15%">${v.userID}</th>
+										<th style="width: 40%"><span id="text_${v.cnum}">${v.content}</span><input
+											type="text" id="input_${v.cnum}"
+											style="display: none;"><a
+											href="javascript:void(0);" onclick="editCancle(${v.cnum})"
+											id="cancleButton_${v.cnum}"
+											style="display: none; float: right; margin: -50px; margin-right: 75px;">X</a></th>
+										<th style="width: 20%">${v.cdate}</th>
+
+
+
+										<c:if test="${v.userID==seUser.userID}">
+											<%-- <td style="width: 25%; font-size: small; font-weight: unset;"><a class="btn-update" href="#" onclick="mUP()">수정</a>&nbsp;/&nbsp;<a href="mdelete.do?cnum=${v.cnum}&spk=${data.spk}">삭제</a></td>
+											<td style="width: 25%; font-size: small; font-weight: unset;"><a class="btn-updateBtn" href="#" onclick="mUP()">수정완료</a>&nbsp;/&nbsp;<a href="mdelete.do?cnum=${v.cnum}&spk=${data.spk}">삭제</a></td> --%>
+
+											<td>
+												<!-- show input button --> <a href="javascript:void(0);"
+												onclick="showInput(${v.cnum})"
+												id="showInputButton_${v.cnum}"
+												style="font-size: small; font-weight: 900;">수정</a> <!-- updateDB button -->
+												<a href="javascript:void(0);"
+												onclick="todoEditDB(${v.cnum})" id="updateButton_${v.cnum}"
+												style="display: none; font-size: small; font-weight: 900;">수정완료</a>
+											</td>
+											<td><a href="javascript:void(0);"
+												onclick="deleteTodoDB(${v.cnum})"
+												id="deleteTodoButton_${v.cnum}"
+												style="margin-left: -130px; font-size: small; font-weight: 900;">삭제</a></td>
+										</c:if>
+
+
+
+										<c:if test="${v.userID!=seUser.userID}">
+											<td style="width: 25%; font-size: small; font-weight: unset;"></td>
+											<td></td>
+										</c:if>
+
 									</tr>
+
 								</c:forEach>
+
+								<%-- <c:forEach var="v" items="${mdatas}">
+					<tr id="todoSet_${v.cnum}">
+						<td><span id="text_${v.cnum}">${v.content}</span><input
+							type="text" id="input_${v.cnum}" class="noShow"> <a
+							href="javascript:void(0);" onclick="editCancle(${v.cnum})"
+							id="cancleButton_${v.cnum}" class="noShow">수정취소</a></td>
+						<td>
+							<!-- show input button --> <a href="javascript:void(0);"
+							onclick="showInput(${v.cnum})"
+							id="showInputButton_${v.cnum}">수정</a> <!-- updateDB button -->
+							<a href="javascript:void(0);" onclick="todoEditDB(${v.cnum})"
+							id="updateButton_${v.cnum}" class="noShow">수정완료</a>
+						</td>
+						<td><a href="javascript:void(0);"
+							onclick="deleteTodoDB(${v.cnum})"
+							id="deleteTodoButton_${v.cnum}">삭제</a></td>
+						
+					</tr>
+				</c:forEach>
+								 --%>
+								
 							</tbody>
 						</table>
 
@@ -240,21 +343,55 @@
 				</div>
 
 			</div>
+			
+			<!-- 댓글 페이징 처리  -->
+
+			<div class="row">
+				<div class="column large-full">
+					<nav class="pgn">
+						<ul>
+						<c:if test="${paging.startPage != 1 }">
+						<li><a  class="pgn__prev" href="shoesList.do?page=${(page-1)-(page-1)%paging.perPageSet - paging.perPageSet + 1}&spk=${data.spk}"></a></li><!-- 이전페이지 -->
+						</c:if>
+						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
+						<c:if test="${paging.curPage == p}">
+						<li><a  class="pgn__num current"  href="shoesList.do?page=${p}&spk=${data.spk}">${p}</a></li>
+						</c:if>
+						<c:if test="${paging.curPage != p}">
+						<li><a  class="pgn__num" href="shoesList.do?page=${p}&spk=${data.spk}" >${p}</a></li>
+						</c:if>
+						</c:forEach>
+                        <c:if test="${paging.endPage != paging.lastPage}">
+                        <li><a  class="pgn__next" href="shoesList.do?page=${(page-1)-(page-1)%paging.perPageSet + paging.perPageSet + 1}&spk=${data.spk}"></a></li><!-- 다음페이지 -->
+                        </c:if>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			
+		
 			<!-- end row -->
 
 			<div class="column large-12 comment-respond">
 
 				<!-- START respond -->
-				<div id="respond">
+				<div id="respond" style="margin-left: -30px">
 
 					<form action="minsert.do" method="post">
 						<input type="hidden" value="${data.spk}" name="spk">
 						<input type="hidden" value="${seUser.userID}" name="userID">
+						<c:if test="${seUser!=null}">
 						<label for="exampleMessage">Message</label>
 						<input type="text" class="full-width" placeholder="Your message"
 							id="exampleMessage" name="content" style="width: 100%">
-					
-						<input class="btn full-width" type="submit" value="add comment">
+							<input class="btn full-width" type="submit" value="add comment">
+						</c:if>
+						<c:if test="${seUser==null}">
+							<label for="exampleMessage">Message</label>
+						<input type="text" class="full-width" placeholder="Your message"
+							id="exampleMessage" name="content" style="width: 100%">
+							<input class="btn full-width" type="button" value="add comment" onclick="location.href='login.jsp'">
+						</c:if>
 					</form>
 					
 
@@ -265,10 +402,10 @@
 			<!-- end comment-respond -->
             
                 </div> <!-- end comments-wrap -->
+
+   </div> <!-- end s-wrap -->
+
             </main>
-
-        </div> <!-- end s-content -->
-
 
         <!-- footer
         ================================================== -->
@@ -287,8 +424,7 @@
             </div>
         </footer>
 
-    </div> <!-- end s-wrap -->
-
+ 
 
     <!-- Java Script
     ================================================== -->

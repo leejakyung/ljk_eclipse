@@ -12,11 +12,12 @@ create table comments( -- 코멘트 테이블
 	spk varchar(30),
 	userID varchar(20) not null,
     -- title varchar(15) not null,
-    content varchar(50) not null,
-    cdate date
+    content varchar(2000) not null,
+    cdate varchar(50)
 );
 
 drop table comments;
+select * from comments;
 
 create table shoes( -- 신발정보 테이블
 	spk varchar(30) primary key, -- 신발 품번
@@ -33,21 +34,38 @@ create table mine( -- 찜 테이블
 	email varchar(50) not null
 );
 
+create table style(
+	snum int primary key,
+	spk varchar(30),
+	filename varchar(500) not null,
+	email varchar(50)
+);
+
+drop table style;
+
+select * from style;
 drop table shoes;
 select * from shoes;
 select * from shoes order by spk desc;
 insert into shoes values('11','ㅇ','ㅇ','ㅇ',10000,TO_CHAR(TO_DATE('1922-10-13','YYYY-MM-DD'),'YYYY-MM-DD'));
+insert into comments(cnum,spk,userID,content,cdate) values (nvl((select max(cnum) from comments),0)+1, ?, ?, ?, to_char(TO_DATE(sysdate,'YY-MM-DD'),'YYYY-MM-DD'));
 
 
+update shoes set spk=12 where spk=11;
+update shoes set spk='12'  where spk='11';
 
 
-
-
-
+insert into client2 values('admin','관리자','1234');
 insert into client2 values('timo0301@naver.com','티모','1234');
 insert into client2 values('ljk940826@naver.com','rxlo','1234');
 insert into message2 values(1,'timo','제목','글 내용입니다',sysdate);
 
+select * from style where rownum<=3 order by snum desc;
+
 
 select * from client2;
-select * from message2;
+select * from mine;
+delete mine where mpk = 1;
+
+
+select * from shoes inner join mine on shoes.spk = mine.spk and mine.email = 'ljk940826@naver.com';

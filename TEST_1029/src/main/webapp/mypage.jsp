@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>
 <!-- 마이페이지 -->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -64,97 +65,7 @@
 
 <body class="ss-bg-white">
 
-		 <header class="s-header">
-
-            <div class="header__top">
-                <div class="header__logo">
-                    <a class="site-logo" href="index.html">
-                        <img src="images/logo.svg" alt="Homepage">
-                    </a>
-                </div>
-
-                <div class="header__search">
-    
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="header__search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
-                        </label>
-                        <input type="submit" class="header__search-submit" value="Search">
-                    </form>
-        
-                    <a href="#0" title="Close Search" class="header__search-close">Close</a>
-        
-                </div>  <!-- end header__search -->
-
-                <!-- toggles -->
-                <a href="#0" class="header__search-trigger"></a>
-                <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
-
-            </div> <!-- end header__top -->
-
-            <nav class="header__nav-wrap">
-
-                <ul class="header__nav">
-                    <li class="current"><a href="main.do" title="">Home</a></li>
-                    <li class="has-children">
-                        <a href="#0" title="">Categories</a>
-                        <ul class="sub-menu">
-                        <li><a href="category.html">Nike</a></li>
-                        <li><a href="category.html">Adidas</a></li>
-                        <li><a href="category.html">Vans</a></li>
-                        <li><a href="category.html">Converse</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-children">
-                        <a href="#0" title="">About us</a>
-                        <ul class="sub-menu">
-                        <li><a href="single-gallery.html">LeeJaKyung</a></li>
-                        <li><a href="single-video.html">Blog</a></li>
-                        <li><a href="single-audio.html">Git Hub</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="styles.html" title="">Project</a></li>
-                    <li><a href="list.do" title="">Q&A</a></li>
-                    <li><a href="page-contact.html" title="">Contact</a></li>
-                    <c:if test="${seUser.email==null}">
-                    <li><a href="login.do" title="">Login</a></li>
-                    </c:if>
-                    <c:if test="${seUser.email!=null}">
-                    <li><a href="mypage.jsp">Mypage</a></li>
-                    <li><a href="#;" onclick="logout()">Logout</a></li>
-                    </c:if>
-                </ul> <!-- end header__nav -->
-
-                <ul class="header__social">
-                    <li class="ss-facebook">
-                        <a href="https://facebook.com/">
-                            <span class="screen-reader-text">Instagram</span>
-                        </a>
-                    </li>
-                    <li class="ss-twitter">
-                        <a href="#0">
-                            <span class="screen-reader-text">YouTube</span>
-                        </a>
-                    </li>
-                    <li class="ss-dribbble">
-                        <a href="#0">
-                            <span class="screen-reader-text">Dribbble</span>
-                        </a>
-                    </li>
-                    <li class="ss-pinterest">
-                        <a href="#0">
-                            <span class="screen-reader-text">Behance</span>
-                        </a>
-                    </li>
-                </ul>
-
-            </nav> <!-- end header__nav-wrap -->
-
-            
-
-        </header> <!-- end s-header -->
-		
+		<mytag:mainMenu />
 
     
 

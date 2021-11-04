@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>  
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
@@ -8,6 +10,50 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>Styles - Typerite</title>
+    <script type="text/javascript">
+   function minsert() {
+      if(insert.filename.value == ""){
+         alert("사진파일을 추가해 주세요!");         
+         return false;
+      }
+      else if(insert.title.value == ""){
+         alert("제목을 입력해 주세요!")
+         return false;
+      }
+      else if(insert.mdate.value == ""){
+         alert("날짜를 입력해 주세요!")
+         return false;
+      }
+      else if(insert.content.value == ""){
+         alert("내용을 입력해 주세요!")
+         return false;
+      }
+      
+    if (confirm("게시물을 등록하시겠습니까?") == true) {
+        document.insert.submit();
+      } else {
+         return;
+      }
+   }
+   function Mupdate() {
+      if (confirm("게시물을 수정하시겠습니까?") == true) {
+         document.movie.submit();
+      } else {
+         return;
+      }
+   }
+   function sdelete() {
+      return confirm("게시물을 삭제하시겠습니까?");
+   }
+   function logout(){
+      if(confirm("정말로 로그아웃 하시겠습니까?")==true){
+         location.href="logout.do";      
+      }
+      else{
+         return;
+      }
+   }
+</script>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -57,91 +103,7 @@
 
         <!-- site header
         ================================================== -->
-        <header class="s-header header">
-
-            <div class="header__top">
-                <div class="header__logo">
-                    <a class="site-logo" href="index.html">
-                        <img src="images/logo.svg" alt="Homepage">
-                    </a>
-                </div>
-
-                <div class="header__search">
-    
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="header__search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
-                        </label>
-                        <input type="submit" class="header__search-submit" value="Search">
-                    </form>
-        
-                    <a href="#0" title="Close Search" class="header__search-close">Close</a>
-        
-                </div>  <!-- end header__search -->
-
-                <!-- toggles -->
-                <a href="#0" class="header__search-trigger"></a>
-                <a href="#0" class="header__menu-toggle"><span>Menu</span></a>
-
-            </div>
-
-            <nav class="header__nav-wrap">
-
-                <ul class="header__nav">
-                    <li class="current"><a href="index.html" title="">Home</a></li>
-                    <li class="has-children">
-                        <a href="#0" title="">Categories</a>
-                        <ul class="sub-menu">
-                        <li><a href="category.html">Lifestyle</a></li>
-                        <li><a href="category.html">Health</a></li>
-                        <li><a href="category.html">Family</a></li>
-                        <li><a href="category.html">Management</a></li>
-                        <li><a href="category.html">Travel</a></li>
-                        <li><a href="category.html">Work</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-children">
-                        <a href="#0" title="">Blog</a>
-                        <ul class="sub-menu">
-                        <li><a href="single-video.html">Video Post</a></li>
-                        <li><a href="single-audio.html">Audio Post</a></li>
-                        <li><a href="single-gallery.html">Gallery Post</a></li>
-                        <li><a href="single-standard.html">Standard Post</a></li>
-                        </ul>
-                    </li>
-                    <li class="current"><a href="styles.html" title="">Styles</a></li>
-                    <li><a href="page-about.html" title="">About</a></li>
-                    <li><a href="page-contact.html" title="">Contact</a></li>
-                </ul> <!-- end header__nav -->
-
-                <ul class="header__social">
-                    <li class="ss-facebook">
-                        <a href="https://facebook.com/">
-                            <span class="screen-reader-text">Facebook</span>
-                        </a>
-                    </li>
-                    <li class="ss-twitter">
-                        <a href="#0">
-                            <span class="screen-reader-text">Twitter</span>
-                        </a>
-                    </li>
-                    <li class="ss-dribbble">
-                        <a href="#0">
-                            <span class="screen-reader-text">Instagram</span>
-                        </a>
-                    </li>
-                    <li class="ss-behance">
-                        <a href="#0">
-                            <span class="screen-reader-text">Behance</span>
-                        </a>
-                    </li>
-                </ul>
-
-            </nav> <!-- end header__nav-wrap -->
-
-        </header> <!-- end s-header -->
-
+     <mytag:mainMenu />
 
         <!-- site content
         ================================================== -->
@@ -158,21 +120,19 @@
 
                         <div class="column large-6 tab-full">
 
-                            <h2 style="margin: revert;">File Upload</h2>
-
-                            <form action="sinsert.do" method="post" enctype="multipart/form-data">
-                                <div>
+							<c:if test="${param.spk==null}">
+                            	<h2 style="margin: revert;">File Upload</h2>
+                            	<form action="sinsert.do" method="post" enctype="multipart/form-data">
+                            	
+                            	 <div>
 								<p>
-									<img src="images/wheel-1000.jpg"
-										srcset="images/wheel-2000.jpg 2000w, 
-                                     images/wheel-1000.jpg 1000w, 
-                                     images/wheel-500.jpg 500w"
-										sizes="(max-width: 2000px) 100vw, 2000px" alt="">
+									<img src="images/tweety.jpg" alt="기본이미지 트위티" class="thumb">
 								</p>
-
+								
+                                
 								<div>
-									<label for="sampleInput">파일업로드</label> <input
-										class="full-width" type="file" id="sampleInput" name="fileUpload">
+									<label for="sampleInput">파일업로드</label> 
+									<input class="full-width" type="file" id="imageSelector" name="fileUpload" accept="image/jpeg, image/jpg, image/png" required>
 								</div>
 								<label for="sampleRecipientInput">브랜드</label>
                                     <div class="ss-custom-select">
@@ -186,25 +146,76 @@
                                 </div>
                                 <div>
                                     <label for="sampleInput">모델번호</label>
-                                    <input class="full-width" type="text"  id="sampleInput"  name="spk">
+                                    <input class="full-width" type="text"  id="sampleInput"  name="spk" required>
                                 </div>
                                 <div>
                                     <label for="sampleInput">모델명</label>
-                                    <input class="full-width" type="text"  id="sampleInput" name="sname">
+                                    <input class="full-width" type="text"  id="sampleInput" name="sname" required>
                                 </div>
                                 <div>
                                     <label for="sampleInput">출시일</label>
-                                    <input class="full-width" type="text"  id="sampleInput" name="sdate">
+                                    <input class="full-width" type="text"  id="sampleInput" name="sdate" required>
                                 </div>
                                 <div>
                                     <label for="sampleInput">가격</label>
-                                    <input class="full-width" type="text"  id="sampleInput" name="price">
+                                    <input class="full-width" type="text"  id="sampleInput" name="price" required>
+                                </div>
+                                
+                          
+                                <input class="btn--primary full-width" type="submit" value="File-Upload">
+                            
+                            	</form>
+                            </c:if> 
+                            <c:if test="${param.spk!=null}">
+                            	<h2 style="margin: revert;">File Edit</h2>
+                            	<form action="supdate.do" method="post" enctype="multipart/form-data">
+                            	<input type="hidden" value="${data.filename}" name="filename">
+                            	
+                                <div> 
+								<p>
+									<img src="images/${data.filename}" class="thumb">
+								</p>
+
+								<div>
+									<label for="sampleInput">파일업로드</label> 
+									<input class="full-width hidden_input" type="file" id="imageSelector" name="fileUpload" accept="image/jpeg, image/jpg, image/png">
+								</div>
+								<label for="sampleRecipientInput">브랜드</label>
+                                    <div class="ss-custom-select">
+                                        <select class="full-width" id="sampleRecipientInput" name="brandname">
+                                            <option value="Nike">Nike</option>
+                                            <option value="Adidas">Adidas</option>
+                                            <option value="Vans">Vans</option>
+                                            <option value="Converse">Converse</option>
+                                        </select>
+                                    </div>
+                                </div>
+                           
+                                <div>
+                                    <label for="sampleInput">모델번호</label>
+                                    <input class="full-width" type="text"  id="sampleInput"  name="spk" value="${data.spk}" re required> 
+                                </div>
+                                <div>
+                                    <label for="sampleInput">모델명</label>
+                                    <input class="full-width" type="text"  id="sampleInput" name="sname" value="${data.sname}" required>
+                                </div>
+                                <div>
+                                    <label for="sampleInput">출시일</label>
+                                    <input class="full-width" type="text"  id="sampleInput" name="sdate" value="${data.sdate}" required>
+                                </div>
+                                <div>
+                                    <label for="sampleInput">가격</label>
+                                    <input class="full-width" type="text"  id="sampleInput" name="price" value="${data.price}" required>
                                 </div>
                                 
                                 
-             
-                                <input class="btn--primary full-width" type="submit" value="File-Upload">
+                     
+                                <input class="btn--primary full-width" type="submit" value="수정">             
+                                <a class="btn btn--stroke full-width" href="sdelete.do?spk=${data.spk}&filename=${data.filename}">삭제</a>
                             </form>
+                           </c:if>
+                            
+                            
 
                         </div>
 
@@ -244,5 +255,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/upload.js"></script>
+    
 
 </body>
