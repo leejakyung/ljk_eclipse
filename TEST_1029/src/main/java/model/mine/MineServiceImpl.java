@@ -12,6 +12,7 @@ public class MineServiceImpl implements MineService{
 
 	@Autowired
 	private SpringMineDAO mineDAO;
+
 	
 
 	@Override

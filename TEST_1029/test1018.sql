@@ -67,5 +67,5 @@ select * from client2;
 select * from mine;
 delete mine where mpk = 1;
 
-
+select *from shoes where spk=(select spk from mine where email='rpsejz12@naver.com');
 select * from shoes inner join mine on shoes.spk = mine.spk and mine.email = 'ljk940826@naver.com';

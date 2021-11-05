@@ -83,8 +83,43 @@
 		})
 
 	}
+	function favart(){ // 찜 
+		console.log("in");
+		 $.ajax({
+			url : 'mineIns.do',
+			type : 'POST',
+			data : 'email=${seUser.email}&spk=${data.spk}',
+			success : function(result){
+				console.log(result);
+				
+				if(result=='addSuccess'){
+					$('#favImg').attr('src','images/RED.png');
+					
+				}
+				else if(result=='delSuccess'){
+					$('#favImg').attr('src','images/BLACK.png');
+					
+				}
+				else{
+					alert('잘못된 요청입니다');
+				}
+			}
+		}); 
+	}	
 	
-	
+	window.onload=function(){
+		$.ajax({
+			url : 'checkMine.do',
+			type : 'POST',
+			data : 'spk=${data.spk}&email=${seUser.email}',
+			success : function(result){
+				if(result=='true'){
+					$('#favImg').attr('src','images/RED.png');
+				}
+				return
+			}
+		});
+	}
 	
 	/* .css('visibility','hidden')
 	.css('visibility','') //remove */
@@ -159,14 +194,14 @@
 						</c:when>
 						
 						<c:when test="${edata!=null}">
-                        <h2>${data.sname}&nbsp;&nbsp;<a href="mineDel.do?spk=${data.spk}&email=${seUser.email}"><img alt="찜" src="images/RED.png" style="margin: auto;"></a></h2>
+                        <h2>${data.sname}&nbsp;&nbsp;<button style="padding: 0; margin: 0; line-height: 0; height: 0; border: none; background-color:  white;" onClick="favart()"><img alt="찜" id="favImg" src="images/RED.png" style="margin: auto;"></button></h2>
     					</c:when>
     					
     					<c:when test="${edata==null}">
-                        <h2>${data.sname}&nbsp;&nbsp;<a href="mineIns.do?spk=${data.spk}&email=${seUser.email}"><img alt="찜" src="images/BLACK.png" style="margin: auto;"></a></h2>
+                        <h2>${data.sname}&nbsp;&nbsp;<button style="padding: 0; margin: 0; line-height: 0; height: 0; border: none; background-color:  white;" onClick="favart()"><img alt="찜" id="favImg" src="images/BLACK.png" style="margin: auto;"></button></h2>
     					</c:when>
     					
-    					</c:choose>
+    					</c:choose> 
     					
     					
     					

@@ -47,6 +47,7 @@ public class SpringMineDAO {
 	private final String mineIns="insert into mine values (nvl((select max(mpk) from mine),0)+1, ?, ?)";
 	private final String mineDel="delete from mine where spk=? and email=?";
 	private final String mineAll="select * from shoes inner join mine on shoes.spk = mine.spk and mine.email = ?"; // Âò ¸ñ·Ï º¸±â
+//	private final String mineAll="select * from mine where email = ?"; // Âò ¸ñ·Ï º¸±â
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

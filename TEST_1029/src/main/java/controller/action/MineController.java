@@ -1,6 +1,7 @@
 package controller.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +22,7 @@ public class MineController {
 	@Autowired
 	private MineService mineService;
 	
-	@RequestMapping("/mineIns.do")
+	/*@RequestMapping("/mineIns.do")
 	public String mineIns(MineVO eVO,Model model) {
 	
 		System.out.println(eVO);
@@ -43,7 +44,7 @@ public class MineController {
 		return "redirect:shoesList.do";
 		
 	}
-	
+	*/
 	@RequestMapping("/mine.do")
 	public String mineList(HttpSession session,MineVO eVO,Model model) {
 	
@@ -60,6 +61,51 @@ public class MineController {
 		model.addAttribute("datas", datas);
 		
 		return "mine.jsp";
+	}
+	
+	@RequestMapping("/mineIns.do")
+	public String addArtist(MineVO eVO,Model model,PrintWriter out) {
+		System.out.println("addFavVO: "+eVO);
+		if(mineService.mine(eVO)==null) {
+			if(mineService.mIns(eVO)) {
+				System.out.println("addFav success!!");
+				out.print("addSuccess");
+			}
+			else {
+				out.print("error");
+			}
+		}
+		else {
+			return "mineDel.do";
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("/mineDel.do")
+	public String deleteArtist(MineVO eVO,PrintWriter out) {
+		System.out.println("delFavVO: "+eVO);
+		int mpk= mineService.mine(eVO).getMpk();
+		System.out.println("mpk: "+mpk);
+		eVO.setMpk(mpk);
+		if(mineService.mDel(eVO)) {
+			System.out.println("delArt success!!");
+			out.print("delSuccess");
+		}
+		else {
+			out.print("error");
+		}
+		return null;
+	}
+	
+	@RequestMapping("/checkMine.do")
+	public void checkMine(MineVO eVO,PrintWriter out) {
+		if(mineService.mine(eVO)==null) {
+			out.print("false");
+		}
+		else {
+			out.print("true");
+		}
 	}
 
 }
