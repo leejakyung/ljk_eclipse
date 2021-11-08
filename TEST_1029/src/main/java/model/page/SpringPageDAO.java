@@ -52,7 +52,7 @@ public class SpringPageDAO {
 				else {											//type 이 없고 검색이 있을시 검색한 리스트의 개수
 					System.out.println("pageDAO 전체 리스트 검색 카운트");
 
-					Object[] args = { "%"+sVO.getSname()+"%" };
+					Object[] args = { "%"+sVO.getKeyword()+"%" };
 					pVO.setTotal((jdbcTemplate.queryForObject(selectAllSearch,args,new PageRowMapper())).getTotal());
 				}
 			}
