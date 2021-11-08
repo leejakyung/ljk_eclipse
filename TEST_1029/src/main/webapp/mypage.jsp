@@ -11,6 +11,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>SHUMONS</title>
+    <link rel="SHOMONS icon" href="images/user.ico">
 <script type="text/javascript">
 	function memDel() {
 		result = confirm("정말 탈퇴하시겠습니까?");

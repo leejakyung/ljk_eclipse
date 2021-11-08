@@ -12,6 +12,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>SHUMONS</title>
+    <link rel="SHOMONS icon" href="images/user.ico"> 
     <script type="text/javascript">
 	function logout() {
 		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {

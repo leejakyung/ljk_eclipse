@@ -20,6 +20,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>SHUMONS</title>
+     <link rel="SHOMONS icon" href="images/user.ico">
     <meta name="description" content="">
     <meta name="author" content="">
 

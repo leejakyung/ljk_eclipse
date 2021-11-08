@@ -10,6 +10,7 @@
     ================================================== -->
     <meta charset="utf-8">
     <title>SHUMONS</title>
+    <link rel="SHOMONS icon" href="images/admin.ico">
     <script type="text/javascript">
 /*    function minsert() {
       if(insert.filename.value == ""){
