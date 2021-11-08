@@ -5,7 +5,14 @@
 <!-- 메인 페이지 -->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<script type="text/javascript">
+
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>SHUMONS</title>
+    <script type="text/javascript">
 	function logout() {
 		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {
 			location.href = "logout.do";
@@ -13,13 +20,7 @@
 			return;
 		}
 	}
-</script>
-<head>
-
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Typerite</title>
+	</script>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -32,6 +33,10 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Dongle&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+
 
     <!-- script
     ================================================== -->
@@ -43,6 +48,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Jua&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -84,7 +92,7 @@
 
 					<div class="entry__related">
 					<h3>
-						<a href="mypage.jsp">${seUser.userID}</a>
+						<a href="mypage.jsp" style="font-family: 'Jua', sans-serif; font-size: xx-large;">${seUser.userID}</a>
 					</h3>
 						<img alt="찜 하트 이미지" src="images/heart2.png"
 							style="margin-bottom: -10px;">
@@ -99,7 +107,7 @@
 						<c:forEach var="v" items="${datas}">
 							<li class="related__item">
 							<a href="shoesList.do?spk=${v.spk}" class="related__link"> 
-							<img src="images/${v.filename}" alt="신발이미지" style="margin-top: -50px;">
+							<img src="${v.filename}" alt="신발이미지" style="margin-top: -50px;">
 							</a>
 								<h5 class="related__post-title" style="margin-top: -3rem; font-size: smaller;">${v.sname}<br>${v.price}원</h5></li>
 						</c:forEach>			

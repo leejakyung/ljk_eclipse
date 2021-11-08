@@ -5,7 +5,7 @@
             <div class="header__top">
                 <div class="header__logo">
                     <a class="site-logo" href="index.jsp">
-                        <img src="images/logo.svg" alt="Homepage">
+                        <img style="height: 40px; margin-left: -10px; width: 150px;" src="images/logo.png" alt="Homepage">
                     </a>
                 </div>
 
@@ -48,9 +48,8 @@
 				<li class="has-children"><a href="#0" title="">AdminCategories</a>
 					<ul class="sub-menu">
 						<li><a href="adminList.do?brandname=Nike">Nike</a></li>
-						<li><a href="adminList.do?brandname=Adidas">Adidas</a></li>
-						<li><a href="adminList.do?brandname=Vans">Vans</a></li>
-						<li><a href="adminList.do?brandname=Converse">Converse</a></li>
+						<li><a href="adminList.do?brandname=Jordan">Jordan</a></li>
+						<li><a href="adminList.do?brandname=New Balance">New Balance</a></li>
 					</ul>
 				</li>
 			</c:if>
@@ -58,21 +57,20 @@
 				<li class="has-children"><a href="#0" title="">Categories</a>
 					<ul class="sub-menu">
 						<li><a href="category.do?brandname=Nike">Nike</a></li>
-						<li><a href="category.do?brandname=Adidas">Adidas</a></li>
-						<li><a href="category.do?brandname=Vans">Vans</a></li>
+						<li><a href="category.do?brandname=Jordan">Jordan</a></li>
+						<li><a href="category.do?brandname=New Balance">New Balance</a></li>
 					</ul>
 				</li>
 			</c:if>
 			<li class="has-children">
                         <a href="#0" title="">About us</a>
                         <ul class="sub-menu">
-                        <li><a href="single-gallery.html">LeeJaKyung</a></li>
-                        <li><a href="single-video.html">Blog</a></li>
-                        <li><a href="single-audio.html">Git Hub</a></li>
+                        <li><a href="https://blog.naver.com/ljk940826">Blog</a></li>
+                        <li><a href="https://github.com/leejakyung">Git Hub</a></li>
                         </ul>
                     </li>
                     <c:if test="${seUser.email==null}">
-                    <li><a href="login.do" title="">Login</a></li>
+                    <li><a href="login.jsp" title="">Login</a></li>
                     </c:if>
                     <c:if test="${seUser.email!=null}">
                     <li><a href="mine.do">Mypage</a></li>
@@ -81,24 +79,14 @@
                 </ul> <!-- end header__nav -->
 
                 <ul class="header__social">
-                    <li class="ss-facebook">
-                        <a href="https://facebook.com/">
+                    <li class="ss-instagram">
+                        <a href="https://www.instagram.com/rxlo.__/">
                             <span class="screen-reader-text">Instagram</span>
                         </a>
                     </li>
-                    <li class="ss-twitter">
-                        <a href="#0">
-                            <span class="screen-reader-text">YouTube</span>
-                        </a>
-                    </li>
-                    <li class="ss-dribbble">
-                        <a href="#0">
-                            <span class="screen-reader-text">Dribbble</span>
-                        </a>
-                    </li>
-                    <li class="ss-pinterest">
-                        <a href="admin.jsp">
-                            <span class="screen-reader-text">Behance</span>
+                    <li class="ss-facebook">
+                        <a href="https://www.youtube.com/results?search_query=%EB%B0%95%EB%B0%94%EB%A6%AC">
+                            <span class="screen-reader-text">Facebook</span>
                         </a>
                     </li>
                 </ul>

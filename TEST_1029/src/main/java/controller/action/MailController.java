@@ -1,7 +1,11 @@
 package controller.action;
 
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +18,7 @@ import web.mail.MailSend;
 public class MailController {
 	
 	@RequestMapping("/pwmail.do")
-	public String mail(HttpServletRequest request, Client2VO cVO,Client2DAO cDAO) {
+	public String mail(HttpServletRequest request, Client2VO cVO,Client2DAO cDAO, HttpServletResponse response) throws IOException {
 		
 		System.out.println("메일 액션 도착" + cVO.getEmail());
 
@@ -25,8 +29,9 @@ public class MailController {
 		//mVO.setMid(mid);
 
 		if (cDAO.SelectOne(cVO) == null) {
-			/*PrintWriter out = response.getWriter();
-			out.println("<script>alert('false');history.go(-1);</script>");*/
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('false');history.go(-1);</script>");
 			
 			return "pw.jsp";
 		} else {

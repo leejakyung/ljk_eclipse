@@ -106,6 +106,7 @@ public class ShoesController {
 		pVO.setPerPageSet(3);	//	페이지 수
 		
 		model.addAttribute("keyword", sVO.getKeyword());
+		model.addAttribute("brandname", sVO.getBrandname());
 		
 		pVO = pageService.paging(pVO, sVO,"category");
 		
@@ -164,9 +165,9 @@ public class ShoesController {
 
 		pVO.setCurPage(page);	//	현재 페이지	
 		pVO.setPerPage(9);		//	페이지 게시물 수
-		pVO.setPerPageSet(5);	//	페이지 수
+		pVO.setPerPageSet(3);	//	페이지 수
 		model.addAttribute("keyword", sVO.getKeyword());
-		
+		model.addAttribute("brandname", sVO.getBrandname());
 		
 		pVO = pageService.paging(pVO, sVO,"category");
 		List<ShoesVO> datas=shoesService.getShoesList(sVO,pVO);

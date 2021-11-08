@@ -5,12 +5,22 @@
 <!-- 임시비밀번호 발급 페이지 -->
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 <head>
 
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Styles - Typerite</title>
+    <title>SHUMONS</title>
+    <script type="text/javascript">
+	function logout() {
+		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {
+			location.href = "logout.do";
+		} else {
+			return;
+		}
+	}
+	</script>
    <!--  <script type="text/javascript">
 	function send_mail() {
 		window.open("./test_mail.jsp", "", "width=370, height=360, resizable=no, scrollbars=no, status=no");

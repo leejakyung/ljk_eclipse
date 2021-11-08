@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Styles - Typerite</title>
+    <title>SHUMONS</title>
 <script type="text/javascript">
 	function memDel() {
 		result = confirm("정말 탈퇴하시겠습니까?");

@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Standard Post - Typerite</title>
+    <title>SHUMONS</title>
     <script type="text/javascript">
 	function logout() {
 		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {
@@ -185,7 +185,7 @@
                       
 
                         <div style="width: 500px; height: 500px;">
-                        <img src="images/${data.filename}"  alt="신발 이미지"> 
+                        <img src="${data.filename}"  alt="신발 이미지"> 
                         </div>
 
 						<c:choose> 

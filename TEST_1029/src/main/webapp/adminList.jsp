@@ -19,7 +19,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Typerite</title>
+    <title>SHUMONS</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -88,7 +88,7 @@
 						<c:forEach var="v" items="${datas}">
 							<li class="related__item">
 							<a href="admin.do?spk=${v.spk}" class="related__link"> 
-							<img src="images/${v.filename}" alt="신발이미지">
+							<img src="${v.filename}" alt="신발이미지">
 							</a>
 								<h5 class="related__post-title" style="margin-top: -3rem;">${v.sname}<br>${v.price}원</h5></li>
 						</c:forEach>			

@@ -24,7 +24,7 @@ create table shoes( -- 신발정보 테이블
 	filename varchar(500) not null,
 	brandname varchar(50) not null, -- 브랜드명
 	sname varchar(100) not null, -- 신발 이름
-	price int not null, -- 신발 가격
+	price int, -- 신발 가격
 	sdate varchar(50) -- 출시일
 ); 
 

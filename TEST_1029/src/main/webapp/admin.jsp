@@ -9,9 +9,9 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Styles - Typerite</title>
+    <title>SHUMONS</title>
     <script type="text/javascript">
-   function minsert() {
+/*    function minsert() {
       if(insert.filename.value == ""){
          alert("사진파일을 추가해 주세요!");         
          return false;
@@ -44,7 +44,7 @@
    }
    function sdelete() {
       return confirm("게시물을 삭제하시겠습니까?");
-   }
+   } */
    function logout(){
       if(confirm("정말로 로그아웃 하시겠습니까?")==true){
          location.href="logout.do";      
@@ -138,9 +138,8 @@
                                     <div class="ss-custom-select">
                                         <select class="full-width" id="sampleRecipientInput" name="brandname">
                                             <option value="Nike">Nike</option>
-                                            <option value="Adidas">Adidas</option>
-                                            <option value="Vans">Vans</option>
-                                            <option value="Converse">Converse</option>
+                                            <option value="Jordan">Jordan</option>
+                                            <option value="New Balance">New Balance</option>
                                         </select>
                                     </div>
                                 </div>
@@ -173,7 +172,7 @@
                             	
                                 <div> 
 								<p>
-									<img src="images/${data.filename}" class="thumb">
+									<img src="${data.filename}" class="thumb">
 								</p>
 
 								<div>
@@ -183,11 +182,10 @@
 								<label for="sampleRecipientInput">브랜드</label>
                                     <div class="ss-custom-select">
                                         <select class="full-width" id="sampleRecipientInput" name="brandname">
-                                            <option value="Nike">Nike</option>
-                                            <option value="Adidas">Adidas</option>
-                                            <option value="Vans">Vans</option>
-                                            <option value="Converse">Converse</option>
-                                        </select>
+											<option value="Nike">Nike</option>
+											<option value="Jordan">Jordan</option>
+											<option value="New Balance">New Balance</option>
+										</select>
                                     </div>
                                 </div>
                            

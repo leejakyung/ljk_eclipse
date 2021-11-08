@@ -30,12 +30,25 @@ class ShoesRowMapper implements RowMapper<ShoesVO>{
 	public ShoesVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ShoesVO data = new ShoesVO();
 		data.setSpk(rs.getString("spk"));
-		data.setFilename(rs.getString("filename"));
+//		data.setFilename(rs.getString("filename"));
 		data.setBrandname(rs.getString("brandname"));
 		data.setSname(rs.getString("sname"));
 		data.setSdate(rs.getString("sdate"));
 		data.setPrice(rs.getInt("price"));
+		
+		String isHttp = null;	
+		isHttp = rs.getString("filename");
+
+		
+		if(!isHttp.substring(0, 4).equals("http")) {		// 처음 4글자가 http가 아니면 앞에 imgaes/추가
+			isHttp = "images/"+isHttp;
+		}
+
+		data.setFilename(isHttp);
+	
+		
 		return data;
+	
 	}
 	
 }

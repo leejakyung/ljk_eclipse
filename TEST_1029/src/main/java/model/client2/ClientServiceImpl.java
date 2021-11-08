@@ -33,16 +33,28 @@ public class ClientServiceImpl implements ClientService{
 		}
 	}
 
-	/*@Override
+
+	@Override
 	public boolean checkID(String userID) {
-		return client2DAO.checkID(userID);
+		try { // 실행이 되면 true
+			client2DAO.checkID(userID);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean checkEmail(String email) {
-		return client2DAO.checkEmail(email);
+		try { // 실행이 되면 true
+			client2DAO.checkEmail(email);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
-
+	
+	/*
 	@Override
 	public Client2VO SelectOne(Client2VO vo) {
 		return client2DAO.SelectOne(vo);

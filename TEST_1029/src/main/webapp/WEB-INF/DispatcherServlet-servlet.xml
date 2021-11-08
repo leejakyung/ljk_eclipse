@@ -12,8 +12,17 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="16000000" />
 	</bean>
+	
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+      <property name="exceptionMappings">
+         <props>
+            <prop key="java.lang.NullPointerException">error.jsp</prop>
+         </props>
+      </property>
+      <property name="defaultErrorView" value="error.jsp" />
+   	</bean>
 
-	<!-- <mvc:annotation-driven></mvc:annotation-driven> -->
+	<mvc:annotation-driven></mvc:annotation-driven>
 
 	<!-- 예외처리를 수행할 설정 -->
 	<!-- <bean id="exceptionResolver"

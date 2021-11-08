@@ -28,8 +28,9 @@ public class SpringClient2DAO {
 	private final String c_insert="insert into client2 values (?,?,?)"; // 회원가입
 	private final String c_delete="delete from client2 where email=?"; // 회원탈퇴
 	private final String c_update="update client2 set email=?, userID=?, userPW=? where email=?"; // 회원정보수정
-	private final String email="select * from client2 where email=?"; // 유효성검사 
-	private final String UpdatePW="update client2 set userPW=? where email=?"; // 임시비밀번호발급
+	private final String Email="select * from client2 where email=?"; // 유효성검사 
+	private final String UserID="select * from client2 where userID=?"; // 유효성검사 
+	//private final String UpdatePW="update client2 set userPW=? where email=?"; // 임시비밀번호발급
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -59,6 +60,16 @@ public class SpringClient2DAO {
 		Object[] args= { vo.getEmail(),vo.getUserPW()};
 		return jdbcTemplate.queryForObject(login,args,new ClientRowMapper());
 		 
+	}
+	
+	public Client2VO checkID(String userID) {
+		Object[] args= {userID};
+		return jdbcTemplate.queryForObject(UserID,args,new ClientRowMapper());
+	}
+	
+	public Client2VO checkEmail(String email) {
+		Object[] args= {email};
+		return jdbcTemplate.queryForObject(Email,args,new ClientRowMapper());
 	}
 
 }

@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Styles - Typerite</title>
+    <title>SHUMONS</title>
 <script type="text/javascript">
 	function logout() {
 		if (confirm("정말로 로그아웃 하시겠습니까?") == true) {
