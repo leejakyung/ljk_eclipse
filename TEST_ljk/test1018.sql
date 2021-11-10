@@ -1,20 +1,39 @@
-create table client2(
-	userID varchar(20) primary key,
-	userPW varchar(20) not null,
-	name varchar(20) not null
+create table client2( -- 회원정보 테이블
+	email varchar(50)  primary key,
+	userID varchar(20) unique not null, -- 닉네임
+	userPW varchar(20) not null
 );
 
 drop table client2;
 select * from client2;
 
-create table message2(
-	mnum int primary key,
+create table comments( -- 코멘트 테이블
+	cnum int primary key,
 	userID varchar(20) not null,
     title varchar(15) not null,
     content varchar(50) not null,
-    wdate date
+    cdate date
 );
-drop table message2;
+
+drop table comments;
+
+create table shoes( -- 신발정보 테이블
+	spk varchar(30) primary key, -- 신발 품번
+	filename varchar(40000) not null,
+	brandname varchar(50) not null, -- 브랜드명
+	sname varchar(50) not null, -- 신발 이름
+	price int not null, -- 신발 가격
+	sdate date -- 출시일
+); 
+
+create table mine( -- 찜 테이블
+	spk varchar(30) primary key,
+	email varchar(50) not null
+);
+
+
+
+
 
 
 

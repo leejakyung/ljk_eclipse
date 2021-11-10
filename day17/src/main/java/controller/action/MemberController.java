@@ -22,6 +22,8 @@ public class MemberController {
 	public String login(HttpSession session,MemberVO vo,MemberDAO dao) {
 		MemberVO data=dao.getMember(vo);
 		
+		//throw new IllegalArgumentException("아이디값 공백에러!");
+		
 		if(data!=null){
 			session.setAttribute("user", data.getName());
 			return "redirect:main.do";

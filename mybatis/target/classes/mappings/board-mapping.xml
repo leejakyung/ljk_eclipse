@@ -11,24 +11,34 @@
 	<!-- parameterType="board"가 인자로 당연히 들어가 있을거니까 생략가능 -->
 	<!-- 인자가 다를 때 넣어주면 됨 -->
 	<insert id="insertBoard">
+		<![CDATA[
 		INSERT INTO BOARD (ID,TITLE,WRITER,CONTENT) VALUES((SELECT NVL(MAX(ID),0)+1 FROM BOARD),#{title},#{writer},#{content})
+		]]>
 	</insert>
 	<!-- 드래그 ctrl+shift+X ->대문자 변경 -->
 	
 	<update id="updateBoard">
+		<![CDATA[
 		UPDATE BOARD SET TITLE=#{title},CONTENT=#{content},WRITER={writer} WHERE ID=#{id}?
+		]]>
 	</update>
 	
 	<delete id="deleteBoard">
+		<![CDATA[
 		DELETE BOARD WHERE ID=#{id}?
+		]]>
 	</delete>
 	
 	<select id="getBoardList" resultType="board">
+		<![CDATA[
 		SELECT * FROM BOARD WHERE TITLE LIKE #{keyword} ORDER BY ID DESC
+		]]>
 	</select>
 	
 	<select id="getBoard" resultType="board">
+		<![CDATA[
 		SELECT * FROM BOARD WHERE ID=#{id}
+		]]>
 	</select>
 
 </mapper>

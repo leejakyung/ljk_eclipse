@@ -12,10 +12,10 @@ public class Client2DAO {
 	PreparedStatement pstmt;
 	ResultSet rs;
 
-	String login="select * from client2 where userID=? and userPW=?"; //로그인
+	String login="select * from client2 where email=? and userPW=?"; //로그인
 	String c_insert="insert into client2 values (?,?,?)"; // 회원가입
-	String c_delete="delete from client2 where userID=?"; // 회원탈퇴
-	String c_update="update client2 set userID=?, userPW=?, name=? where userID=?"; // 회원정보수정
+	String c_delete="delete from client2 where email=?"; // 회원탈퇴
+	String c_update="update client2 set email=?, userID=?, userPW=? where email=?"; // 회원정보수정
 
 	boolean flag=false;
 
@@ -26,14 +26,14 @@ public class Client2DAO {
 
 		try {
 			pstmt=conn.prepareStatement(login);
-			pstmt.setString(1, vo.getUserID());
+			pstmt.setString(1, vo.getEmail());
 			pstmt.setString(2, vo.getUserPW());
 			rs=pstmt.executeQuery();
 			if (rs.next()) { // 일치하는 회원 ID,PW가 있다면 ... 
 				outvo = new Client2VO();
+				outvo.setEmail(rs.getString("email"));
 				outvo.setUserID(rs.getString("userID"));
 				outvo.setUserPW(rs.getString("userPW"));
-				outvo.setName(rs.getString("name"));
 			} // 이 정보를 받아와서 return 해주면 회원정보 수정을 할때 편리
 			// return flag를 하면 ID값만 받아오니까 .. .
 			rs.close();
@@ -52,9 +52,9 @@ public class Client2DAO {
 
 		try {
 			pstmt =conn.prepareStatement(c_insert);
+			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(1, vo.getUserID());
 			pstmt.setString(2, vo.getUserPW());
-			pstmt.setString(3, vo.getName());
 			pstmt.executeUpdate();
 
 			flag=true;
@@ -74,7 +74,7 @@ public class Client2DAO {
 
 		try {
 			pstmt=conn.prepareStatement(c_delete);
-			pstmt.setString(1, vo.getUserID());
+			pstmt.setString(1, vo.getEmail());
 			pstmt.executeUpdate();
 
 			flag=true;
@@ -94,10 +94,10 @@ public class Client2DAO {
 
 		try {
 			pstmt=conn.prepareStatement(c_update);
+			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(1, vo.getUserID());
 			pstmt.setString(2, vo.getUserPW());
-			pstmt.setString(3, vo.getName());
-			pstmt.setString(4, vo.getUserID());
+			pstmt.setString(4, vo.getEmail());
 			pstmt.executeUpdate();
 
 			flag = true;
@@ -112,7 +112,7 @@ public class Client2DAO {
 
 	}
 
-	public boolean checkID(String userID) { // 아이디 중복확인 
+	public boolean checkID(String userID) { // 닉네임 중복확인  
 
 		conn = JNDI.connect();
 		String sql = "select * from client2 where userID = ?";
@@ -136,4 +136,27 @@ public class Client2DAO {
 		return flag;
 	}
 
+	public boolean checkEmail(String email) { // 이메일 중복확인  
+
+		conn = JNDI.connect();
+		String sql = "select * from client2 where email = ?";
+
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				flag = true;
+			}
+
+			rs.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JNDI.disconnect(pstmt, conn);
+		}
+		return flag;
+	}
 }

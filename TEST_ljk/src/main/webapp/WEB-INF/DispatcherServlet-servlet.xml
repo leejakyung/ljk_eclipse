@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/main.do">main</prop>
+				<prop key="/login.do">login</prop>
+				<prop key="/logout.do">logout</prop>
+				<prop key="/signup.do">c_insert</prop>
+				<prop key="/cdelete.do">c_delete</prop>
+				<prop key="/cupdate.do">c_update</prop>
+				<prop key="/minsert.do">m_insert</prop>
+				<prop key="/mdelete.do">m_delete</prop>
+				<prop key="/mupdate.do">m_update</prop>
+				<prop key="/list.do">list</prop>
+				<prop key="/edit.do">edit</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="login" class="controller.action.LoginController" />
+	<bean id="logout" class="controller.action.LogoutController" />
+	<bean id="c_delete" class="controller.action.C_deleteController" />
+	<bean id="c_insert" class="controller.action.C_insertController" />
+	<bean id="c_update" class="controller.action.C_updateController" />
+	<bean id="m_delete" class="controller.action.M_deleteController" />
+	<bean id="m_insert" class="controller.action.M_insertController" />
+	<bean id="m_update" class="controller.action.M_updateController" />
+	<bean id="list" class="controller.action.ListController" />
+	<bean id="edit" class="controller.action.EditController" />
+	<bean id="main" class="controller.action.MainController" />
+
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- <property name="prefix" value="/WEB-INF/board/" /> webinf 아래 폴더를 만들어 사용해도됨 (사용자가 보는 화면) -->
+		<property name="prefix" value="/WEB-INF/shoes/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

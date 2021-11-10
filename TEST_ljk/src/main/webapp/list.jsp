@@ -18,7 +18,7 @@
 </head>
 <body>
 <c:if test="${seUser!=null}">
-	${seUser.userID}님, 환영합니다! <hr>
+	${seUser.userID}님 환영합니다😎 <hr>
 	<form action="logout.do" method="post" name="form2">
 
 		<input type="submit" value="로그아웃">

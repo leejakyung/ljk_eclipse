@@ -3,7 +3,7 @@ package model.client2;
 public class Client2VO {
 	private String userID;
 	private String userPW;
-	private String name;
+	private String email;
 	
 	public String getUserID() {
 		return userID;
@@ -17,18 +17,18 @@ public class Client2VO {
 	public void setUserPW(String userPW) {
 		this.userPW = userPW;
 	}
-	public String getName() {
-		return name;
+	public String getEmail() {
+		return email;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	
 	
 	@Override
 	public String toString() {
-		return "Client2VO [userID=" + userID + ", userPW=" + userPW + ", name=" + name + "]";
+		return "Client2VO [userID=" + userID + ", userPW=" + userPW + ", email=" + email + "]";
 	}
+	
 
-	
-	
 }
