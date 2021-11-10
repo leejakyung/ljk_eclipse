@@ -67,6 +67,7 @@ public class ShoesController {
 		String saveDir = request.getSession().getServletContext().getRealPath("images");		
 		MultipartFile fileUpload=sVO.getFileUpload();
 
+		sVO.setFilename(sVO.getFilename().replace("images/", ""));
 		System.out.println("파일수정확인"+sVO); 
 		if(!sVO.getFileUpload().isEmpty()) {												//파일이 null이 아닐시 이전에 로컬에 있던 이미지 삭제
 			File preFile = new File(saveDir+"/"+sVO.getFilename());
