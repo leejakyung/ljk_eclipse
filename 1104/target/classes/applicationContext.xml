@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	<!-- 컴포넌트 스캔 -->
+	<context:component-scan base-package="model" />
+	
+	<!-- bean으로 Datasource 객체 등록 -->
+	<!-- 객체를 해제하는 시점에 자동 반납을 위하여 destroy-method="colse" 처리 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="sngynhy"/>
+		<property name="password" value="qwer"/>
+	</bean>
+	
+	<!-- jdbcTemplate 객체 등록 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property ref="dataSource" name="dataSource"/>
+	</bean>
+	
+	<!-- sqlSessionFactoryBean 객체 등록 -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="configLocation" value="classpath:sql-map-config.xml" />
+	</bean>
+	<!-- SqlSessionTemplate 객체 등록 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sessionFactory"></constructor-arg>
+	</bean>
+	
+	<!-- jpaVendorAdapter : Vendor를 통해 영속성 유닛 네임을 갖기 위해 추가 -->
+	<bean id="jpaVendorAdaptor" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+	</bean>
+	<!-- entityManagerFactory 등록 -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+	</bean>
+	
+	<!-- JPA를 이용한 트랜잭션매니저 사용 -->
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+  	</bean>
+  	<tx:advice id="txAdvice" transaction-manager="txManager">
+  		<tx:attributes>
+  			<tx:method name="get" read-only="true"/>
+  			<tx:method name="*"/>
+  		</tx:attributes>
+  	</tx:advice>
+  	<aop:config>
+		<aop:pointcut expression="execution(* model..*Impl.*(..))" id="tPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="tPointcut"/>
+	</aop:config>
+  	
+</beans>
