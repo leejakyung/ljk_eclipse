@@ -30,19 +30,20 @@ public class DatabaseConfiguration {
 	}
 
 	@Bean
-	public DataSource dataSource() {
+	public DataSource dataSource() { // mysql 연결 시 
 		DataSource dataSource = new HikariDataSource(hikariConfig());
 		return dataSource;
 	}
 	
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+	@Bean // DAO를 수행시킬 SQL
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception { // mapping해서 나온 결과값을 반환?? 
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath*:mappers/**/*.xml"));
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.kim.app.model.*");
 		return sqlSessionFactoryBean.getObject();
 	}
-	@Bean
+	@Bean 
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
