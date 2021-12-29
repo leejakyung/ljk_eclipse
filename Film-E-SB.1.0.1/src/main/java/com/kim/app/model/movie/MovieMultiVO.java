@@ -1,15 +1,17 @@
 package com.kim.app.model.movie;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
-@Alias("MovieVO")
-public class MovieVO {
+@Alias("MovieMultiVO")
+public class MovieMultiVO {
 	private String mpk;				//pk 장르 + nvl 
 	private String title;			//영화 이름
 	private String content;			//영화 설명
 	private String mtype;			//영화 장르
 	private String mdate;			//영화 개봉일
-	private String filename;		//영화 이미지
+	private String filedb;		//영화 이미지
+	private MultipartFile filename;
 	private double ratingavg;
 	
 	
@@ -44,10 +46,16 @@ public class MovieVO {
 		this.mdate = mdate;
 	}
 	
-	public String getFilename() {
+	public String getFiledb() {
+		return filedb;
+	}
+	public void setFiledb(String filedb) {
+		this.filedb = filedb;
+	}
+	public MultipartFile getFilename() {
 		return filename;
 	}
-	public void setFilename(String filename) {
+	public void setFilename(MultipartFile filename) {
 		this.filename = filename;
 	}
 	public double getRatingavg() {
@@ -61,8 +69,9 @@ public class MovieVO {
 	
 	@Override
 	public String toString() {
-		return "MovieVO [mpk=" + mpk + ", title=" + title + ", content=" + content + ", mtype=" + mtype + ", mdate="
-				+ mdate + ", filename=" + filename + ", ratingavg=" + ratingavg + "]";
+		return "MovieMultiVO [mpk=" + mpk + ", title=" + title + ", content=" + content + ", mtype=" + mtype
+				+ ", mdate=" + mdate + ", filedb=" + filedb + ", filename=" + filename + ", ratingavg=" + ratingavg
+				+ "]";
 	}
 	
 	

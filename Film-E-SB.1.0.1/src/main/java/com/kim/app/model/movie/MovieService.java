@@ -1,10 +1,15 @@
 package com.kim.app.model.movie;
 
 import java.util.ArrayList;
-
+ 
 import com.kim.app.model.page.PageVO;
-
 
 public interface MovieService {
 	public ArrayList<MovieVO> m_selectDB_all_m(PageVO vo); 
+	public ArrayList<MovieVO> m_selectDB_all(PageVO vo);
+	public MovieVO m_selectDB_rand();
+	public MovieVO m_selectDB_one(MovieVO vo);
+	public Boolean m_insertDB(MovieMultiVO vo);
+	public Boolean m_updateDB(MovieMultiVO vo);
+	public Boolean m_deleteDB(MovieMultiVO vo);
 }
